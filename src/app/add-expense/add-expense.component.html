@@ -1,0 +1,28 @@
+<form  class="comp" #addexpform>
+    <div>Your monthly limit is {{monthlyLimit}}</div>
+    <div>You already spent {{monthlySpent}}</div>
+    <div>Balance {{monthlyLimit-monthlySpent}}</div>
+    <table>
+      <tr>
+        <td class="subHead">Purpose</td>
+        <td class="input"><input type="text" name="Purpose" placeholder="On what you spent.?" [(ngModel)]="spendAdd.purpose"></td>
+      </tr>
+      <tr>
+        <td class="subHead">Money</td>
+        <td class="input"><input type="number" name="money" placeholder="how much.?" [(ngModel)]="spendAdd.money"></td>
+      </tr>
+      <tr>
+        <td class="subHead">On others</td>
+        <td class="input"><input type="number" name="forOthers" placeholder="how much.?" [(ngModel)]="spendAdd.forOthers"></td>
+      </tr>
+      <tr>
+        <td class="subHead">Date</td>
+        <td class="input"><input type="date" name="date" placeholder="when.?" [(ngModel)]="spendAdd.date"></td>
+      </tr>
+    </table>
+    
+    <div class="flex flex-space-around">
+      <button #addReset type="reset" class=" light">Reset</button>
+      <button #addSubmit type="button" class=" dark" (click)="addSpend()" >Submit</button>
+    </div>
+</form>

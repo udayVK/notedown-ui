@@ -1,0 +1,32 @@
+<form class="comp">
+    <table>
+        <tr>
+            <td><input type="radio" name="type" [(ngModel)]="loan.type" [value]="false"></td>
+            <td>Taken</td>
+        </tr>
+        <tr>
+            <td><input type="radio" name="type" [(ngModel)]="loan.type" [value]="true"></td>
+            <td>Given</td>
+        </tr>
+        <tr>
+            <td>To Whom</td>
+            <td><input type="text" name="loan-to" placeholder="To / From" [(ngModel)]="loan.name"></td>
+        </tr>
+        <tr>
+            <td>Total Amount</td>
+            <td><input type="number" name="amount" placeholder="How much.?" [(ngModel)]="loan.totalAmount"></td>
+        </tr>
+        <tr>
+            <td>When</td>
+            <td><input type="date" name="when" placeholder="When.?" [(ngModel)]="loan.date"></td>
+        </tr>
+        <tr>
+            <td>Any reason.?</td>
+            <td><input type="text" name="why" placeholder="Reason" [(ngModel)]="loan.reason"></td>
+        </tr>
+    </table>
+    <div class="flex flex-space-around">
+        <button type="reset" class=" light">Reset</button>
+        <button  type="button" class=" dark" (click)="addLoan()" >Submit</button>
+    </div>
+</form>

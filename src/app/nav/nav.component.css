@@ -1,0 +1,11 @@
+.navitemactive{
+    color: #d7e6d4;
+}
+.navitem{
+    background-color: #93aebb;
+    border-color: #90A4AE;
+}
+.nav{
+    display: flex;
+    justify-content: space-between;
+}

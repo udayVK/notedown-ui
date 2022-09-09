@@ -1,0 +1,35 @@
+<div class="comp">
+    <!--  rendering pending loans -->
+    <div>pending loans</div>
+    <div *ngFor="let loan of loans">
+        <div><!--add conditions to this tag based on the filter selection-->
+        <div class="flex flex-space-between">
+            <span>{{loan.name}}</span>
+            <span>{{loan.reason}}</span>
+        </div>
+
+        <div class="flex flex-space-between">
+            <span>on {{loan.date}}</span>
+            <span *ngIf="!loan.type" [style]="{color:'red'}">FROM</span>
+            <span *ngIf="loan.type" [style]="{color:'red'}">TO</span>
+            <span class="pointer" *ngIf="!loan.status" (click)="changeLoanStatus(loan.id)">❌</span>
+            <span class="pointer" *ngIf="loan.status" (click)="changeLoanStatus(loan.id)">✅</span>
+        </div>
+        <div class="flex flex-space-between">
+            <span>Total: ₹ {{loan.totalAmount}}</span>
+            <span>pending: ₹ {{loan.pendingAmount}}</span>
+        </div>
+        </div> 
+        <hr>
+    </div>
+    <hr>
+
+</div>
+
+
+<!-- <span class="pointer" (click)="changeEditMode()">Pending: 
+    <span *ngIf="!editPendingAmountMode">₹ {{loan.pendingAmount}}</span>
+    <span *ngIf="editPendingAmountMode">
+        <input [(ngModel)]="loan.pendingAmount">
+    </span>
+</span> -->

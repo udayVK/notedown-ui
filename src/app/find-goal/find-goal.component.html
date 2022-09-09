@@ -1,0 +1,16 @@
+<form class="comp">
+    
+    <h4>Goals</h4>
+    <div>
+        <div *ngFor="let goal of goals">
+            <div class="flex flex-space-around">
+                <span style="width:80%">{{goal.desc}}</span>
+                <span *ngIf="goal.status" style="width:20%" (click)="changeGoalStatus(goal.id)" class="pointer">✅</span>
+                <span *ngIf="!goal.status" style="width:20%" (click)="changeGoalStatus(goal.id)" class="pointer">❌</span>
+            </div>
+            <hr>
+        </div>
+    </div>
+
+    
+ </form>

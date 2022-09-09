@@ -1,0 +1,96 @@
+/* You can add global styles to this file, and also import other style files */
+body{
+    background-color: #CFD8DC;
+    color: black;
+    display: flex;
+    justify-content: space-around;
+    padding-top: 30px;
+}
+div{
+    margin:1px;
+}
+button{
+    border-radius: 4px;
+    padding: 4px;
+    margin: 4px;
+}
+input{
+    border-radius: 9px;
+    margin: 4px 4px 4px 8px;
+    padding: 3px;
+
+}
+h1, h2, h3, h4, h5, h6{
+    margin: 4px 0px 4px 0px;
+}
+.flex{
+    display: flex;
+}
+.flex-down{
+    flex-direction: column;
+}
+.flex-row-center{
+    justify-content: center;
+}
+.flex-space-around{
+    justify-content: space-around;
+}
+.flex-space-between{
+    justify-content: space-between;
+}
+.app{
+    width: 300px;
+    height: 333px;
+    display: flex;
+    justify-content: space-around;
+}
+.head{
+    font-weight: bold;
+    font-family: 'Gill Sans';
+    font-style: italic;
+    font-size: x-large;
+}
+/* .content{
+     height: 400px
+} */
+hr{
+    margin: 3px;
+    opacity: 1;
+    color: #93aebb;
+    border-top: 1px #93aebb solid;
+    border-bottom: 1px #93aebb dotted;
+}
+
+.light{
+    background-color: #f0f0f0;
+}
+button.light:active{
+    background-color: grey;
+}
+.dark{
+    background-color: #3c3c3c;
+    color: white;
+}
+.active{
+    background-color: red;
+}
+.footer{
+    position: relative;
+    left: 0;
+    bottom: -50px;
+    width: 100%;
+}
+.full-h{
+    width: 100%;
+    background-color: #93aebb;
+    border-color: #90A4AE;
+  }
+button.dark:active{
+    background-color: #000000;
+}
+.comp{
+    width: 240px;
+}
+.pointer{
+    cursor: pointer;
+}

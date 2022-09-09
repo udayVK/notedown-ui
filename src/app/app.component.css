@@ -1,0 +1,10 @@
+.subHead{
+    font-size: medium;
+    margin: 1px;
+}
+input{
+    width: 200px;
+    border-radius: 5px;
+    margin: 4px;
+    margin-left: 20px;
+}

@@ -1,0 +1,14 @@
+<div class="comp">
+    <div *ngFor="let spend of spends">
+        <div class="flex flex-space-between">
+            <span>{{spend.purpose}}</span>
+            <span>on {{spend.date}}</span>
+            
+        </div>
+        <div class="flex flex-space-between">
+            <span>Me - ₹ {{spend.money}}</span>
+            
+            <span>Others - ₹ {{spend.forOthers}} </span>
+        </div>
+    </div>
+</div>
