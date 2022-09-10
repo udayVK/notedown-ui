@@ -23,7 +23,10 @@ export class FindGoalComponent implements OnInit {
                               goal.status=!goal.status;
                             }
                           })
-    this.spnSrv.changeGoalStatus(id).subscribe({next:()=>{console.log('status changed')}});
+    this.spnSrv.changeGoalStatus(id).subscribe({
+      next:()=>{console.log('status changed');window.alert('Successfully changed goal status')},
+      error:()=>{window.alert('Error occured. Please refresh and try again.')},
+    });
   }
 
   ngOnInit(): void {
