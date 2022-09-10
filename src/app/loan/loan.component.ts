@@ -21,8 +21,11 @@ export class LoanComponent implements OnInit {
   changeEditMode(){this.editPendingAmountMode=!this.editPendingAmountMode}
   changeLoanStatus(id:number){
     console.log("changing loan status",id);
-    this.spnSrv.changeLoanStatus(id).subscribe({})
-    this.loans.map(l=>{if(l.id==id){l.status=true}})
+    this.spnSrv.changeLoanStatus(id).subscribe({
+      next:(data)=>{window.alert('successfully changed')},
+      error:()=>{window.alert('Error occured. Please refresh and try again')}
+    })
+    this.loans.map(l=>{if(l.id==id){l.status=!l.status}})
 
   }
 

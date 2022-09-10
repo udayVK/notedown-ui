@@ -44,7 +44,7 @@ export class SpendsService {
    return this.http.get<Loan[]>('http://localhost:8080/loan/all');
   }
   changeLoanStatus(id:number){
-    return this.http.get('http://localhost:8080/loan/complete?lid='+id);
+    return this.http.get('http://localhost:8080/loan/change?lid='+id);
   }
 
   //goal
