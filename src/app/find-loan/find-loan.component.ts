@@ -14,7 +14,6 @@ import { SpendsService } from '../spends.service';
        <td><button type="button" (click)="findAllLoans()" style="margin-left:30px" class=" dark">Submit</button></td>
      </tr>
    </table>
-
    <h4>Loans</h4>
    <app-loan  [loans]="pendingLoans" name="Pending Loans" ></app-loan>
    <app-loan  [loans]="completedLoans" name="Completed Loans" ></app-loan>
