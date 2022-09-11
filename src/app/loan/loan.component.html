@@ -1,6 +1,6 @@
 <div class="comp">
     <!--  rendering pending loans -->
-    <div>pending loans</div>
+    <div>{{name}}</div>
     <div *ngFor="let loan of loans">
         <div><!--add conditions to this tag based on the filter selection-->
         <div class="flex flex-space-between">
@@ -17,7 +17,7 @@
         </div>
         <div class="flex flex-space-between">
             <span>Total: ₹ {{loan.totalAmount}}</span>
-            <span>pending: ₹ {{loan.pendingAmount}}</span>
+            <span>Pending: ₹ {{loan.pendingAmount}}</span>
         </div>
         </div> 
         <hr>
