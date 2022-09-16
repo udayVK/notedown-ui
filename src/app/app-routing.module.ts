@@ -4,6 +4,7 @@ import { AddExpenseComponent } from './add-expense/add-expense.component';
 import { AddGoalComponent } from './add-goal/add-goal.component';
 import { AddLoanComponent } from './add-loan/add-loan.component';
 import { AddComponent } from './add/add.component';
+import { EditLoanComponent } from './edit-loan/edit-loan.component';
 import { FindGoalComponent } from './find-goal/find-goal.component';
 import { FindLoanComponent } from './find-loan/find-loan.component';
 import { FindSpendComponent } from './find-spend/find-spend.component';
@@ -14,18 +15,17 @@ import { MiscComponent } from './misc/misc.component';
 
 const routes: Routes = [
   {path:"add", component : AddComponent },
-  {path:"add/exp", component : AddExpenseComponent },
-  {path:"add/loan", component : AddLoanComponent },
-  {path:"add/goal", component : AddGoalComponent },
   {path:"find", component : FindComponent},
-  {path:"find/exp", component : FindSpendComponent},
-  {path:"find/loan", component : FindLoanComponent},
-  {path:"find/goal", component : FindGoalComponent},
   {path:"stats", component : HomeComponent },
   {path:"misc", component : MiscComponent },
   {path:'limit', component : LimitComponent },
-  
-
+  {path:"add/exp", component : AddExpenseComponent },
+  {path:"find/exp", component : FindSpendComponent},
+  {path:"add/loan", component : AddLoanComponent },  
+  {path:"find/loan", component : FindLoanComponent},
+  {path:"edit/loan/:id" ,component: EditLoanComponent},
+  {path:"add/goal", component : AddGoalComponent },
+  {path:"find/goal", component : FindGoalComponent},
 
   {path: "**",component : HomeComponent },
 ];
