@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { Loan } from '../pojo/loan';
 import { SpendsService } from '../spends.service';
 
@@ -13,13 +14,11 @@ export class LoanComponent implements OnInit {
   loans:Loan[]=[{id:0,name:'', totalAmount: 0,pendingAmount:0, date: new Date(), reason: '', type:true,status:false}];
   @Input()
   name:string ='';
+  @Output()
+  editLoanEvent:EventEmitter<Loan> = new EventEmitter<Loan>();
   
-  editPendingAmountMode:boolean=false;
-//not needed this edit mode
-  constructor(private spnSrv:SpendsService) { }
-
-  changeEditMode(){this.editPendingAmountMode=!this.editPendingAmountMode}
-  
+  constructor(private spnSrv:SpendsService,
+            private router: Router){ }
   changeLoanStatus(id:number){
     console.log("changing loan status",id);
     this.spnSrv.changeLoanStatus(id).subscribe({
@@ -27,6 +26,11 @@ export class LoanComponent implements OnInit {
       error:()=>{window.alert('Error occured. Please refresh and try again')}
     })
     this.loans.map(l=>{if(l.id==id){l.status=!l.status}})
+  }
+  
+  emitEditLoanEvent(loan:Loan){
+    console.log("emitting edit loan event ")
+    this.editLoanEvent.emit(loan)
   }
 
   ngOnInit(): void {
