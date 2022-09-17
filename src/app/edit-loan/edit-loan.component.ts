@@ -37,5 +37,5 @@ export class EditLoanComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.loan);
   }
-
+  
 }
