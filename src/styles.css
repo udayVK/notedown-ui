@@ -38,6 +38,12 @@ h1, h2, h3, h4, h5, h6{
 .flex-space-between{
     justify-content: space-between;
 }
+.flex-right{
+    justify-content: flex-end;
+}
+.flex-left{
+    justify-content: flex-start;
+}
 .app{
     width: 300px;
     height: 333px;

@@ -11,7 +11,7 @@ import { Spend } from './pojo/spend';
   providedIn: 'root'
 })
 export class SpendsService {
-  
+
   constructor(private http: HttpClient) { }
 
   //data
@@ -45,6 +45,9 @@ export class SpendsService {
   }
   changeLoanStatus(id:number){
     return this.http.get('http://localhost:8080/loan/change?lid='+id);
+  }
+  addEditedLoan(loan: Loan):Observable<Loan> {
+    return this.http.put<Loan>('http://localhost:8080/loan/edit',loan);
   }
 
   //goal
