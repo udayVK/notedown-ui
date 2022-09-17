@@ -30,7 +30,8 @@ export class AddLoanComponent implements OnInit {
   
   addLoan(){
     console.log('adding loan');
-    this.spnSrv.addLoan(this.loan).subscribe({next:()=>{Swal.fire('added')}});
+    this.loan.pendingAmount = this.loan.totalAmount;
+    this.spnSrv.addLoan(this.loan).subscribe({next:()=>window.alert("Loan Added")});
   }
 
   ngOnInit(): void {
