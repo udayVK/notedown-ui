@@ -24,10 +24,6 @@ export class AddExpenseComponent implements OnInit {
       console.log('add form validation failed');
       return
     }
-    if(this.spendAdd.forOthers==0){
-      console.log('for others is zero');
-    }
-    else{console.log(this.spendAdd)}
     let obj = {purpose:'',money:0,date:new Date(),forOthers:0};
     obj.date=this.spendAdd.date;
     obj.money=this.spendAdd.money;
@@ -35,9 +31,9 @@ export class AddExpenseComponent implements OnInit {
     obj.date=this.spendAdd.date;
     obj.forOthers=this.spendAdd.forOthers;
     this.spnSrv.postSpend(obj).subscribe({
-                                          next:()=>{Swal.fire("added")},
-                                          error:()=>{alert("error")}
-                                          ,complete:()=>{this.getSpentData()}});
+                                          next:()=>{window.alert("Added");},
+                                          error:()=>{window.alert("error");},
+                                          complete:()=>{this.getSpentData()}});
   }
 
   validateForm():boolean {

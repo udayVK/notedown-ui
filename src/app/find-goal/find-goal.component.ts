@@ -13,7 +13,7 @@ export class FindGoalComponent implements OnInit {
   constructor(private spnSrv : SpendsService) { }
 
   findAllGoals(){
-    this.spnSrv.findAllGoals().subscribe({ next:(data:Goal[])=>{this.goals=data;},complete:()=>{console.log(this.goals);} })
+    this.spnSrv.findAllGoals().subscribe({ next:(data:Goal[])=>{this.goals=data;} })
 
   }
   

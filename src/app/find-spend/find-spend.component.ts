@@ -21,7 +21,6 @@ export class FindSpendComponent implements OnInit {
     let year = Number(full[1]);
     this.spnSrv.getSpendsOfMonth(year,month).subscribe((data:Spend[])=>{this.spends=data})
     this.getmonthlySpent();
-    setTimeout(() => {  console.log(this.spends); }, 2000);
   }
 
   getMonthArrFromString(month:string){
@@ -32,7 +31,6 @@ export class FindSpendComponent implements OnInit {
   ngOnInit(): void {
     let now = new Date();
     this.month = now.getFullYear().toString()+'-'+(now .getMonth()+1).toString();
-    console.log(now.getMonth());
     this.searchSpecefic();
   }
 
