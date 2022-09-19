@@ -22,7 +22,7 @@ import { SpendsService } from '../spends.service';
      <app-loan  [loans]="completedLoans" name="Completed Loans" ></app-loan>
    </div>
    <div *ngIf=editLoanMode>
-      <edit-loan [loan]="loanToEdit" ></edit-loan>
+      <edit-loan [loan]="loanToEdit" (editLoanEventEnd)="listenEditLoanEndEvent()"></edit-loan>
    </div>
 `,
   styleUrls: ['./find-loan.component.css']
@@ -55,9 +55,13 @@ export class FindLoanComponent implements OnInit {
   listenEditLoanEvent(loan:Loan){
     console.log("listening edit loan event");
     this.loanToEdit = loan;
-    this.editLoanMode = !this.editLoanMode;
+    this.editLoanMode = true;
 
   }
+  listenEditLoanEndEvent(){
+    this.editLoanMode = false;
+  }
+
   searchTheLoanToEdit(id:number){
     
   }

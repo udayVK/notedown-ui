@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { Loan } from '../pojo/loan';
 import { SpendsService } from '../spends.service';
 
@@ -9,33 +10,41 @@ import { SpendsService } from '../spends.service';
     <table>
       <tr><h4> {{loan.name}}       {{loan.date}} </h4></tr>
       <tr> <td>Reason.?</td> </tr>
-      <tr> <td><input type="text" name="why" placeholder="Reason" [(ngModel)]="loan.reason"></td> </tr>
+      <tr> <td><input class="long-input" type="text" name="why" placeholder="Reason" [(ngModel)]="loan.reason"></td> </tr>
       <tr> <td>Total Amount</td> </tr>
-      <tr> <td><input type="number" name="amount" placeholder="How much.?" [(ngModel)]="loan.totalAmount"></td> </tr>
+      <tr> <input class="long-input" type="number" name="tamount" placeholder="How much.?" [(ngModel)]="loan.totalAmount"> </tr>
       <tr> <td>Pending Amount</td> </tr>
-      <tr> <td><input type="number" name="amount" placeholder="How much.?" [(ngModel)]="loan.pendingAmount"></td> </tr>
+      <tr> <td><input class="long-input" type="number" name="pamount" placeholder="How much.?" [(ngModel)]="loan.pendingAmount"></td> </tr>
     </table>
-    <div style="margin-left:120px">
-        <button  type="button" class=" dark" (click)="saveEditedLoan()">Submit</button>
-    </div>
   </form>
+  <div class="flex flex-space-between">
+    <button type="button" class="light" (click)="emitEditLoanEndEvent()">Back</button>
+    <button  type="button" class=" dark" (click)="saveEditedLoan()">Submit</button>
+  </div>
   `,
   styles: ['']
 })
 export class EditLoanComponent implements OnInit {
-//class="flex flex-space-around"
-//(click)="addLoan()"
+  
   @Input()
   loan:Loan = {id:0,name:'', totalAmount: 0, pendingAmount:0, date: new Date(), reason: '', type:true, status:false};
-  constructor(private spnSrv:SpendsService) { }
+  @Output()
+  editLoanEventEnd:EventEmitter<1>=new EventEmitter<1>();
+
+  constructor(private spnSrv:SpendsService, private router:Router) { }
 
   saveEditedLoan(){
     console.log("saving the edited loan");
-    this.spnSrv.addEditedLoan(this.loan).subscribe({next:()=>window.alert("loan edited")});
+    this.spnSrv.addEditedLoan(this.loan).subscribe({next:()=>{window.alert("loan edited");
+                                                    this.router.navigate(["/find","/loan"])}});
+  }
+  
+  emitEditLoanEndEvent(){
+    this.editLoanEventEnd.emit(1);
   }
 
   ngOnInit(): void {
     console.log(this.loan);
   }
-  
+
 }

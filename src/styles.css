@@ -20,6 +20,9 @@ input{
     padding: 3px;
 
 }
+.long-input{
+    width: 230px;
+}
 h1, h2, h3, h4, h5, h6{
     margin: 4px 0px 4px 0px;
 }
