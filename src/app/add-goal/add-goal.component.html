@@ -2,10 +2,9 @@
 
     <span>{{addNotif}}</span>
     <table>
-      <tr>
-        <td class="subHead">Description</td>
-        <td class="input"><input type="text" name="Desc" placeholder="Brief your goal.." [(ngModel)]="addGoal.desc"></td>
-      </tr>
+      <tr> <td class="subHead">Description</td></tr>
+      <tr > <td colspan="2" class="input"><textarea type="text" name="Desc" class="AddGoal" placeholder="Brief your goal.." [(ngModel)]="addGoal.desc"></textarea></td></tr>
+      
       <tr>
         <td class="subHead">Limit Date</td>
         <td class="input"><input type="date" name="upto" placeholder="upto what " [(ngModel)]="addGoal.upto"></td>
