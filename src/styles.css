@@ -23,6 +23,13 @@ input{
 .long-input{
     width: 230px;
 }
+.m-input{
+    width: 176px;
+}
+.s-input{
+    
+    width: 148px;
+}
 h1, h2, h3, h4, h5, h6{
     margin: 4px 0px 4px 0px;
 }
@@ -47,9 +54,11 @@ h1, h2, h3, h4, h5, h6{
 .flex-left{
     justify-content: flex-start;
 }
+.flex-vertical-center{
+    align-items: center;
+}
 .app{
     width: 300px;
-    height: 333px;
     display: flex;
     justify-content: space-around;
 }
