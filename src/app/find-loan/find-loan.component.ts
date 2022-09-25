@@ -46,7 +46,14 @@ export class FindLoanComponent implements OnInit {
 
   //ng on init method calls this one
   findAllLoans(){
-    this.spnSrv.findAllLoans().subscribe({next:(data:Loan[])=>{this.loans=data;this.classifyLoans()}});
+    this.spnSrv.findAllLoans().subscribe({
+      next:(data:Loan[])=>{
+        this.loans=data;
+        this.classifyLoans();
+        this.findTotalPendingAmount();
+      }
+  
+    });
   }
 
   classifyLoans(){
@@ -63,10 +70,12 @@ export class FindLoanComponent implements OnInit {
   listenEditLoanEndEvent(){
     this.editLoanMode = false;
   }
-
+  findTotalPendingAmount(){
+    this.loans.forEach(l=>{if(l.status===false)
+                            this.totalReoveryAmount+=l.pendingAmount})
+  }
 
   ngOnInit(): void {
     this.findAllLoans();
-    this.spnSrv.getTotalRecoveryAmount().subscribe({next:(data)=>{this.totalReoveryAmount=data}});
   }
 }
