@@ -12,54 +12,58 @@ import { Spend } from './pojo/spend';
 })
 export class SpendsService {
 
+  baseURL = "http://localhost:8080/";
   constructor(private http: HttpClient) { }
 
   //data
   setMonthlyLimit(limit: number) {
-    return this.http.post<number>(`http://localhost:8080/data/monthlylimit/${limit}`,'');
+    return this.http.post<number>(this.baseURL+`data/monthlylimit/${limit}`,'');
   }
   getMonthlyLimit():Observable<number> {
-    return this.http.get<number>(`http://localhost:8080/data/monthlylimit/`);
+    return this.http.get<number>(this.baseURL+`data/monthlylimit/`);
   }
  
 
   //spend
   getSpendsOfMonth(month:number, year:number):Observable<Spend[]>{
-    return this.http.get<Spend[]>(`http://localhost:8080/spend/${year}/${month}`);
+    return this.http.get<Spend[]>(this.baseURL+`spend/${year}/${month}`);
   }
   postSpend(sp:any){
     console.log("add call in service")
-    return this.http.post<any>(`http://localhost:8080/spend/add`,sp);
+    return this.http.post<any>(this.baseURL+`spend/add`,sp);
   }
   getMonthlySpent(year:number, month:number):Observable<number> {
-    return this.http.get<number>(`http://localhost:8080/spend/monthlyspent/${year}/${month}`);
+    return this.http.get<number>(this.baseURL+`spend/monthlyspent/${year}/${month}`);
   }
 
 
   //loan
   addLoan(l:Loan){
-    return this.http.post<Loan>('http://localhost:8080/loan/new',l);
+    return this.http.post<Loan>(this.baseURL+'loan/new',l);
   }
   findAllLoans():Observable<Loan[]>{
-   return this.http.get<Loan[]>('http://localhost:8080/loan/all');
+   return this.http.get<Loan[]>(this.baseURL+'loan/all');
   }
   changeLoanStatus(id:number){
-    return this.http.get('http://localhost:8080/loan/change?lid='+id);
+    return this.http.get(this.baseURL+'loan/change?lid='+id);
   }
   addEditedLoan(loan: Loan):Observable<Loan> {
-    return this.http.put<Loan>('http://localhost:8080/loan/edit',loan);
+    return this.http.put<Loan>(this.baseURL+'loan/edit',loan);
+  }
+  getTotalRecoveryAmount():Observable<number> {
+    return this.http.get<number>(this.baseURL+'loan/pending/all');
   }
 
   //goal
   addNewGoal(g:Goal){
-    return this.http.post<Goal>('http://localhost:8080/goal/new',g);
+    return this.http.post<Goal>(this.baseURL+'goal/new',g);
   }
   findAllGoals():Observable<Goal[]>{
-    return this.http.get<Goal[]>('http://localhost:8080/goal/all');
+    return this.http.get<Goal[]>(this.baseURL+'goal/all');
   }
   changeGoalStatus(id: number) {
     console.log(id);
-    return this.http.put<number>('http://localhost:8080/goal/change',id);
+    return this.http.put<number>(this.baseURL+'goal/change',id);
   }
   
 }

@@ -45,7 +45,7 @@ import { EditLoanComponent } from './edit-loan/edit-loan.component';
     LoanComponent,
     AddGoalComponent,
     FindGoalComponent,
-    EditLoanComponent
+    EditLoanComponent,
   ],
   imports: [
     BrowserModule,

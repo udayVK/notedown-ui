@@ -16,6 +16,7 @@ import { SpendsService } from '../spends.service';
      </tr>
    </table>
    </form>
+   <span>Total amount to be recovered is: {{totalReoveryAmount}}</span>
    <h4>Loans</h4>
    <div *ngIf=!editLoanMode>
      <app-loan  [loans]="pendingLoans" (editLoanEvent)="listenEditLoanEvent($event)" name="Pending Loans" ></app-loan>
@@ -37,6 +38,7 @@ export class FindLoanComponent implements OnInit {
   loans:Loan[]=[{id:0,name:'', totalAmount: 0,pendingAmount:0, date: new Date(), reason: '', type:true,status:false}];
   pendingLoans:Loan[]=[{id:0,name:'', totalAmount: 0,pendingAmount:0, date: new Date(), reason: '', type:true,status:false}];
   completedLoans:Loan[]=[{id:0,name:'', totalAmount: 0,pendingAmount:0, date: new Date(), reason: '', type:true,status:false}];
+  totalReoveryAmount:number=0;
 
   loanToEdit:Loan = {id:0,name:'', totalAmount: 0,pendingAmount:0, date: new Date(), reason: '', type:true,status:false}
   
@@ -62,10 +64,9 @@ export class FindLoanComponent implements OnInit {
     this.editLoanMode = false;
   }
 
-  searchTheLoanToEdit(id:number){
-    
-  }
+
   ngOnInit(): void {
     this.findAllLoans();
+    this.spnSrv.getTotalRecoveryAmount().subscribe({next:(data)=>{this.totalReoveryAmount=data}});
   }
 }
