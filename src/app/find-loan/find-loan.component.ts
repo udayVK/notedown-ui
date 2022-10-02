@@ -7,15 +7,12 @@ import { SpendsService } from '../spends.service';
 @Component({
   selector: 'find-loan',
   template: 
-  `<form class="comp" *ngIf=!editLoanMode>
-   <h3 style="margin-top: 8px;">Month</h3>
-   <table>
-     <tr>
-       <td><input type="month" name="month" style="width:150px;" [(ngModel)]="month"></td>
-       <td><button type="button" (click)="findAllLoans()" style="margin-left:30px" class=" dark">Submit</button></td>
-     </tr>
-   </table>
-   </form>
+  `
+  <div *ngIf = "isLoading" class = "flex flex-row-center">
+    <loading></loading>
+  </div>
+
+  <div *ngIf = "!isLoading">
    <span>Total amount to be recovered is: {{totalReoveryAmount}}</span>
    <h4>Loans</h4>
    <div *ngIf=!editLoanMode>
@@ -25,6 +22,7 @@ import { SpendsService } from '../spends.service';
    <div *ngIf=editLoanMode>
       <edit-loan [loan]="loanToEdit" (editLoanEventEnd)="listenEditLoanEndEvent()"></edit-loan>
    </div>
+  </div>
 `,
   styleUrls: ['./find-loan.component.css']
 })
@@ -32,6 +30,7 @@ export class FindLoanComponent implements OnInit {
 
   //properties
   editLoanMode:boolean = false;
+  isLoading:boolean = false;
   
   //data
   month:string='';
@@ -51,6 +50,7 @@ export class FindLoanComponent implements OnInit {
         this.loans=data;
         this.classifyLoans();
         this.findTotalPendingAmount();
+        this.isLoading = false;
       }
   
     });
@@ -76,6 +76,7 @@ export class FindLoanComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.findAllLoans();
   }
 }
