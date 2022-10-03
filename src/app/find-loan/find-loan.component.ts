@@ -8,13 +8,16 @@ import { SpendsService } from '../spends.service';
   selector: 'find-loan',
   template: 
   `
-  <div *ngIf = "isLoading" class = "flex flex-row-center">
+  <div *ngIf = "isLoading && !isError" class = "flex flex-row-center">
     <loading></loading>
   </div>
+  <div *ngIf = "isError">
+    <h4>Error Occured, sip some water.</h4>
+  </div>
 
-  <div *ngIf = "!isLoading">
+  <div *ngIf = "canShowLoanInfo()">
    <span>Total amount to be recovered is: {{totalReoveryAmount}}</span>
-   <h4>Loans</h4>
+
    <div *ngIf=!editLoanMode>
      <app-loan  [loans]="pendingLoans" (editLoanEvent)="listenEditLoanEvent($event)" name="Pending Loans" ></app-loan>
      <app-loan  [loans]="completedLoans" name="Completed Loans" ></app-loan>
@@ -31,6 +34,7 @@ export class FindLoanComponent implements OnInit {
   //properties
   editLoanMode:boolean = false;
   isLoading:boolean = false;
+  isError:boolean = false;
   
   //data
   month:string='';
@@ -43,6 +47,10 @@ export class FindLoanComponent implements OnInit {
   
   constructor(private spnSrv: SpendsService) { }
 
+  canShowLoanInfo(){
+    return !this.isLoading && !this.isError ? true : false;
+  }
+
   //ng on init method calls this one
   findAllLoans(){
     this.spnSrv.findAllLoans().subscribe({
@@ -51,7 +59,9 @@ export class FindLoanComponent implements OnInit {
         this.classifyLoans();
         this.findTotalPendingAmount();
         this.isLoading = false;
-      }
+        this.isError = false;
+      },
+      error:(error)=>{this.isError=true}
   
     });
   }
@@ -65,7 +75,6 @@ export class FindLoanComponent implements OnInit {
     console.log("listening edit loan event");
     this.loanToEdit = loan;
     this.editLoanMode = true;
-
   }
   listenEditLoanEndEvent(){
     this.editLoanMode = false;
