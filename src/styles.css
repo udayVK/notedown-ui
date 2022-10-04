@@ -6,6 +6,11 @@ body{
     justify-content: space-around;
     padding-top: 30px;
 }
+app-root{
+    width: 360px;
+    display: flex;
+    justify-content: center;
+}
 div{
     margin:1px;
 }
@@ -57,11 +62,6 @@ h1, h2, h3, h4, h5, h6{
 .flex-vertical-center{
     align-items: center;
 }
-.app{
-    width: 300px;
-    display: flex;
-    justify-content: space-around;
-}
 .head{
     font-weight: bold;
     font-family: 'Gill Sans';
@@ -105,9 +105,6 @@ button.light:active{
   }
 button.dark:active{
     background-color: #000000;
-}
-.comp{
-    width: 240px;
 }
 .pointer{
     cursor: pointer;
