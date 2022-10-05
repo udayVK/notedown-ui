@@ -23,7 +23,7 @@ button{
 }
 input{
     border-radius: 9px;
-    margin: 4px 4px 4px 8px;
+    margin: 4px 4px 4px 4px;
     padding: 3px;
 }
 .long-input{
