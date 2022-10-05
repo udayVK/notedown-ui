@@ -4,6 +4,11 @@
 .navitem{
     background-color: #93aebb;
     border-color: #90A4AE;
+    width: 20%;
+    height: 4.3vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .nav{
     display: flex;
