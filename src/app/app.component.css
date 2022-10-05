@@ -1,4 +1,4 @@
-.subHead{
+.subead{
     font-size: medium;
     margin: 1px;
 }
@@ -9,5 +9,25 @@ input{
     margin-left: 20px;
 }
 .app-div{
-    width: 320px;
+    width: 95%;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+}
+.content{
+    /* height: 68vh; */
+    width: 85%;
+}
+.footer{
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.foot-head{
+    font-weight: bold;
+    font-family: 'Gill Sans';
+    font-style: italic;
+}
+.foot-tag{
 }
