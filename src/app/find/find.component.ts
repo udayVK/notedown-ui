@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-find',
   template: `
-  <div class="comp">
+  <div class="full-h-list">
     <button class="full-h" routerLink="/find/exp">Expenses</button>
     <button class="full-h" routerLink="/find/loan">Loans</button>
     <button class="full-h" routerLink="/find/goal">Goals</button>

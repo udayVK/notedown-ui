@@ -1,11 +1,10 @@
 <form class="comp">
     <h3 style="margin-top: 8px;">Month</h3>
-    <table>
-      <tr>
-        <td><input type="month" name="month" style="width:150px;" [(ngModel)]="month"></td>
-        <td><button type="button" (click)="searchSpecefic()" style="margin-left:20px" class=" dark">Submit</button></td>
-      </tr>
-    </table>
+
+    <div class="flex flex-space-around">
+      <input class="m-input" type="month" name="month"  [(ngModel)]="month">
+      <button type="button" (click)="searchSpecefic()" style="margin-left:20px" class=" dark">Submit</button>
+    </div>
 
     <h4>Spends</h4>
     <app-spend  [spends]="spends" ></app-spend>

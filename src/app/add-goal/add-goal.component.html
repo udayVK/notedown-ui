@@ -1,19 +1,19 @@
-<form  class="comp">
+<form>
 
-    <span>{{addNotif}}</span>
-    <table>
-      <tr> <td class="subHead">Description</td></tr>
-      <tr> <td colspan="2"><textarea class="add-goal" type="text" name="Desc" placeholder="Brief your goal.." [(ngModel)]="addGoal.desc"></textarea></td></tr>
-      
-      <tr class="flex flex-vertical-center">
-        <td class="subHead">Limit Date</td>
-        <td><input class="s-input" type="date" name="upto" placeholder="upto what " [(ngModel)]="addGoal.upto"></td>
-      </tr>
-    </table>
+  <span>{{addNotif}}</span>
+
     
-    <div class="flex flex-space-around">
-      <button type="reset" class="light">Reset</button>
-      <button type="button" class="dark" (click)="addNewGoal()" >Submit</button>
-    </div>
+  <span>Description</span><br>
+  <textarea class="add-goal" type="text" name="Desc" placeholder="Brief your goal.." [(ngModel)]="addGoal.desc"></textarea>
+  
+  <div class="flex flex-space-around">
+    <span>Limit Date</span>
+    <input class="s-input" type="date" name="upto" placeholder="upto what " [(ngModel)]="addGoal.upto">
+  </div>
+  
+  <div class="flex flex-space-around">
+    <button type="reset" class="light">Reset</button>
+    <button type="button" class="dark" (click)="addNewGoal()" >Submit</button>
+  </div>
 
 </form>

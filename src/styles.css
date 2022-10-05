@@ -5,6 +5,13 @@ body{
     display: flex;
     justify-content: space-around;
     padding-top: 30px;
+    max-width: 450px;
+    margin: auto;
+}
+app-root{
+    width: 95%;
+    display: flex;
+    justify-content: center;
 }
 div{
     margin:1px;
@@ -16,19 +23,17 @@ button{
 }
 input{
     border-radius: 9px;
-    margin: 4px 4px 4px 8px;
+    margin: 4px 4px 4px 4px;
     padding: 3px;
-
 }
 .long-input{
-    width: 230px;
+    width: 80%;
 }
 .m-input{
-    width: 176px;
+    width: 70%;
 }
 .s-input{
-    
-    width: 148px;
+    width: 60%;
 }
 h1, h2, h3, h4, h5, h6{
     margin: 4px 0px 4px 0px;
@@ -57,20 +62,6 @@ h1, h2, h3, h4, h5, h6{
 .flex-vertical-center{
     align-items: center;
 }
-.app{
-    width: 300px;
-    display: flex;
-    justify-content: space-around;
-}
-.head{
-    font-weight: bold;
-    font-family: 'Gill Sans';
-    font-style: italic;
-    font-size: x-large;
-}
-/* .content{
-     height: 400px
-} */
 hr{
     margin: 3px;
     opacity: 1;
@@ -92,22 +83,18 @@ button.light:active{
 .active{
     background-color: red;
 }
-.footer{
-    position: relative;
-    left: 0;
-    bottom: -50px;
-    width: 100%;
+.full-h-list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .full-h{
-    width: 231px;
+    width: 90%;
     background-color: #93aebb;
     border-color: #90A4AE;
   }
 button.dark:active{
     background-color: #000000;
-}
-.comp{
-    width: 240px;
 }
 .pointer{
     cursor: pointer;

@@ -6,7 +6,7 @@ import { SpendsService } from '../spends.service';
 @Component({
   selector: 'app-add',
   template: `
-  <div class="comp">
+  <div class="full-h-list">
     <button class="full-h" routerLink="/add/exp">Expense</button>
     <button class="full-h" routerLink="/add/loan">Loan</button>
     <button class="full-h" routerLink="/add/goal">Goal</button>
