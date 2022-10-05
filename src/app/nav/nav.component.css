@@ -10,6 +10,9 @@
     justify-content: center;
     align-items: center;
 }
+.navitem:hover{
+    background-color: #CFD8DC;
+}
 .nav{
     display: flex;
     justify-content: space-between;
