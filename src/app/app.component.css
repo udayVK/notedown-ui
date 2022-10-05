@@ -15,7 +15,8 @@ input{
     flex-direction: column;
 }
 .content{
-    
+    /* placeholder */
+    border: 0px;
 }
 .footer{
     margin-top: auto;
@@ -29,4 +30,6 @@ input{
     font-style: italic;
 }
 .foot-tag{
+    /* placeholder */
+    border: 0px;
 }
