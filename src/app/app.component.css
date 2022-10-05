@@ -15,8 +15,7 @@ input{
     flex-direction: column;
 }
 .content{
-    /* height: 68vh; */
-    width: 85%;
+    
 }
 .footer{
     margin-top: auto;

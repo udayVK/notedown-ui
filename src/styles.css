@@ -83,8 +83,13 @@ button.light:active{
 .active{
     background-color: red;
 }
+.full-h-list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .full-h{
-    width: 231px;
+    width: 90%;
     background-color: #93aebb;
     border-color: #90A4AE;
   }
