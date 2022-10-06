@@ -1,4 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { Spend } from './pojo/spend';
 import { SpendsService } from './spends.service';
 
@@ -15,10 +16,12 @@ export class AppComponent {
   // spends=[{id:0,purpose:'',money:0,date:Date.now(),toWhom:0}];
   
 
-  constructor(private spnSrv: SpendsService){
+  constructor(private spnSrv: SpendsService, private router: Router ){
   }
 
-  
+  goToHome(){
+    this.router.navigate(['/']);
+  }
 
   makeSpendtoSend(spends:Object){
     
