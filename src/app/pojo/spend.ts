@@ -1,8 +1,8 @@
-export interface Spend{
-    
-    purpose: string;
-    money: number ;
-    date: Date;
-    forOthers:number;
+import SubSpend from "./subspend";
 
+export interface Spend{
+    id:number;
+    heading: string;
+    date: Date;
+    spends:Array<SubSpend>;
 }

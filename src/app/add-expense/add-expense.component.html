@@ -1,24 +1,42 @@
 <form  class="comp" #addexpform>
     <div>Your monthly limit is {{monthlyLimit}}. You already spent {{monthlySpent}}. Balance {{monthlyLimit-monthlySpent}}</div>
-
+    
     <div class="flex flex-space-between">
-      <span>Purpose</span>
-      <input class="m-input" type="text" name="Purpose" placeholder="On what you spent.?" [(ngModel)]="spendAdd.purpose">
+      <span>Main Purpose</span>
+      <input class="m-input" type="text" name="Heading" placeholder="Main category of spends" [(ngModel)]="spendAdd.heading">
     </div>
-    <div class="flex flex-space-between">
-      <span>Money</span>
-      <input class="m-input" type="number" name="money" placeholder="how much.?" [(ngModel)]="spendAdd.money">
-    </div>
-    <div class="flex flex-space-between">
-     <span> On others</span>
-      <input class="m-input" type="number" name="forOthers" placeholder="how much.?" [(ngModel)]="spendAdd.forOthers">
-    </div>
+    
     <div class="flex flex-space-between">
       <span>Date</span>
       <input class="m-input" type="date" name="date" placeholder="when.?" [(ngModel)]="spendAdd.date">
     </div>
-    <div class="flex flex-space-around">
-      <button #addReset type="reset" class=" light">Reset</button>
-      <button #addSubmit type="button" class=" dark" (click)="addSpend()" >Submit</button>
+<!--  -->
+    <div>
+    <div class="flex flex-space-between">
+      <span>Purpose</span>
+      <input class="m-input" type="text" name="Purpose" placeholder="On what you spent.?" [(ngModel)]="currentSubSpend.purpose">
     </div>
-</form>
+    
+    <div class="flex flex-space-between">
+      <span>Money</span>
+      <input class="m-input" type="number" name="money" placeholder="how much.?" [(ngModel)]="currentSubSpend.money">
+    </div>
+    
+    <div class="flex flex-space-between">
+     <span> On others</span>
+      <input class="m-input" type="number" name="forOthers" placeholder="how much.?" [(ngModel)]="currentSubSpend.forOthers">
+    </div>
+    
+    <div class="flex flex-space-between">
+      <span>Date</span>
+      <input class="m-input" type="date" name="date" placeholder="when.?" [(ngModel)]="currentSubSpend.date">
+    </div>
+    <button type="button" class="dark" style="margin-left: 85%;" (click)="addSubSpend()">Save</button>
+  </div>
+  <!--  -->
+    <div class="flex flex-space-around">
+      <button #addReset type="reset" class="light">Reset</button>
+      <button #addSubmit type="button" class="dark" (click)="addSpend()" >Submit</button>
+    </div>
+
+  </form>
