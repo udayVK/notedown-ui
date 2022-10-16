@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { Loan } from '../pojo/loan';
+import { Loan,defaultLoan } from '../pojo/loan';
 import { SpendsService } from '../spends.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { SpendsService } from '../spends.service';
 export class LoanComponent implements OnInit {
 
   @Input()
-  loans:Loan[]=[{id:0,name:'', totalAmount: 0,pendingAmount:0, date: new Date(), reason: '', type:true,status:false}];
+  loans:Loan[]=[defaultLoan];
   @Input()
   name:string ='';
   @Output()

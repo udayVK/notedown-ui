@@ -15,3 +15,5 @@ export interface Loan{
     //false if yet to pay
     status:boolean;
 }
+
+export const defaultLoan:Loan = {id:0, name:'', totalAmount: 0,pendingAmount:0, date: new Date(), reason:'',type:true,status:false};

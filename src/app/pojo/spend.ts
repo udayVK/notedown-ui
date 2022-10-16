@@ -1,4 +1,4 @@
-import { Category } from "./category";
+import { Category, defaultCategory } from "./category";
 
 export interface Spend{
     id:number;
@@ -9,4 +9,4 @@ export interface Spend{
     category:Category;
 }
 
-export const defaultSpend = {id:0,purpose:'',date:new Date(),money:0,forOthers:0,category:{id:0,heading:''}} ;
+export const defaultSpend = {id:0,purpose:'',date:new Date(),money:0,forOthers:0,category:defaultCategory} ;
