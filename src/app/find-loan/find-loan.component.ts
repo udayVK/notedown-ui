@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Loan } from '../pojo/loan';
-import { Spend } from '../pojo/spend';
+import { Category } from '../pojo/category';
 import { SpendsService } from '../spends.service';
 
 @Component({

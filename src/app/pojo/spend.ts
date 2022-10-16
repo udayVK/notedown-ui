@@ -1,8 +1,12 @@
-import SubSpend from "./subspend";
+import { Category } from "./category";
 
 export interface Spend{
     id:number;
-    heading: string;
-    date: Date;
-    spends:Array<SubSpend>;
+    purpose:string;
+    date:Date;
+    money:number;
+    forOthers:number;
+    category:Category;
 }
+
+export const defaultSpend = {id:0,purpose:'',date:new Date(),money:0,forOthers:0,category:{id:0,heading:''}} ;
