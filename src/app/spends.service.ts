@@ -36,8 +36,8 @@ export class SpendsService {
   getMonthlySpent(year:number, month:number):Observable<number> {
     return this.http.get<number>(this.baseURL+`spend/monthlyspent/${year}/${month}`);
   }
-  getAllExistingCategories():Observable<Array<string>>{
-    return this.http.get<Array<string>>(this.baseURL+'spend/categories');
+  getAllExistingCategories():Observable<Array<Category>>{
+    return this.http.get<Array<Category>>(this.baseURL+'spend/categories');
   }
 
 

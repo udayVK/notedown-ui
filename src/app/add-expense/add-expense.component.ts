@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import Swal from 'sweetalert2';
-import { Category } from '../pojo/category';
+import { Category, defaultCategory } from '../pojo/category';
 import {Spend, defaultSpend }from '../pojo/spend';
 import { SpendsService } from '../spends.service';
 
@@ -13,7 +13,7 @@ export class AddExpenseComponent implements OnInit {
   spendAdd:Spend = defaultSpend;
   monthlyLimit:number=0;
   monthlySpent:number=0;
-  categories:Array<string>=['test','foo','bar'];
+  categories:Array<Category> = [defaultCategory];
 
   @ViewChild('addexpform')
   expForm!:ElementRef;

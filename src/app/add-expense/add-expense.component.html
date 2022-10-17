@@ -5,7 +5,7 @@
       <span>Category</span>
       <input class="input m-input" type="text" list="categories" name="Heading" placeholder="Main category of spends" [(ngModel)]="spendAdd.category.heading">
       <datalist id="categories">
-        <option *ngFor="let category of categories">{{category}}</option>
+        <option *ngFor="let category of categories">{{category.heading}}</option>
       </datalist>
     </div>
 <!--  -->
