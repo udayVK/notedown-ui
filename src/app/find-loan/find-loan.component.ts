@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Loan } from '../pojo/loan';
-import { Spend } from '../pojo/spend';
+import { Loan, defaultLoan } from '../pojo/loan';
+import { Category } from '../pojo/category';
 import { SpendsService } from '../spends.service';
 
 @Component({
@@ -38,12 +38,12 @@ export class FindLoanComponent implements OnInit {
   
   //data
   month:string='';
-  loans:Loan[]=[{id:0,name:'', totalAmount: 0,pendingAmount:0, date: new Date(), reason: '', type:true,status:false}];
-  pendingLoans:Loan[]=[{id:0,name:'', totalAmount: 0,pendingAmount:0, date: new Date(), reason: '', type:true,status:false}];
-  completedLoans:Loan[]=[{id:0,name:'', totalAmount: 0,pendingAmount:0, date: new Date(), reason: '', type:true,status:false}];
+  loans:Loan[]=[defaultLoan];
+  pendingLoans:Loan[]=[defaultLoan];
+  completedLoans:Loan[]=[defaultLoan];
   totalReoveryAmount:number=0;
 
-  loanToEdit:Loan = {id:0,name:'', totalAmount: 0,pendingAmount:0, date: new Date(), reason: '', type:true,status:false}
+  loanToEdit:Loan = defaultLoan;
   
   constructor(private spnSrv: SpendsService) { }
 

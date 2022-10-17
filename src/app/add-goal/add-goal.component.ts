@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Goal } from '../pojo/goal';
+import { Goal, defaultGoal } from '../pojo/goal';
 import { SpendsService } from '../spends.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { SpendsService } from '../spends.service';
 })
 export class AddGoalComponent implements OnInit {
 
-  addGoal:Goal = {id:0,desc:'',upto:new Date(),status:false}
+  addGoal:Goal = defaultGoal;
 
   addNotif:string='';
   constructor(private spnSrv : SpendsService) { }

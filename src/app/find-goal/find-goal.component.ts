@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Goal } from '../pojo/goal';
+import { Goal, defaultGoal } from '../pojo/goal';
 import { SpendsService } from '../spends.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { SpendsService } from '../spends.service';
 })
 export class FindGoalComponent implements OnInit {
 
-  goals:Goal[]=[{id:0,desc:'',upto:new Date(),status:false}]
+  goals:Goal[]=[defaultGoal]
   constructor(private spnSrv : SpendsService) { }
 
   findAllGoals(){
