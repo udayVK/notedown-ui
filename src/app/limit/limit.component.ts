@@ -6,7 +6,7 @@ import { SpendsService } from '../spends.service';
   template: `
   <span>Set Monthly Limit</span>
   <div class="flex flex-space-between">
-    <input name="limit" type="number" min="100" max="10000" class="s-input" placeholder="enter amount" [(ngModel)]="limitAM">
+    <input name="limit" type="number" min="100" max="10000" class="input s-input" placeholder="enter amount" [(ngModel)]="limitAM">
     <button class="dark med" (click)="addMonthlyLimit()">Set</button>
   </div>
 `,

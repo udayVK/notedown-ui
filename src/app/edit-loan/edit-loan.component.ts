@@ -10,11 +10,11 @@ import { SpendsService } from '../spends.service';
     <table>
       <tr><h4> {{loan.name}}       {{loan.date}} </h4></tr>
       <tr> <td>Reason.?</td> </tr>
-      <tr> <td><input class="long-input" type="text" name="why" placeholder="Reason" [(ngModel)]="loan.reason"></td> </tr>
+      <tr> <td><input class="input long-input" type="text" name="why" placeholder="Reason" [(ngModel)]="loan.reason"></td> </tr>
       <tr> <td>Total Amount</td> </tr>
-      <tr> <input class="long-input" type="number" name="tamount" placeholder="How much.?" [(ngModel)]="loan.totalAmount"> </tr>
+      <tr> <input class="input long-input" type="number" name="tamount" placeholder="How much.?" [(ngModel)]="loan.totalAmount"> </tr>
       <tr> <td>Pending Amount</td> </tr>
-      <tr> <td><input class="long-input" type="number" name="pamount" placeholder="How much.?" [(ngModel)]="loan.pendingAmount"></td> </tr>
+      <tr> <td><input class="input long-input" type="number" name="pamount" placeholder="How much.?" [(ngModel)]="loan.pendingAmount"></td> </tr>
     </table>
   </form>
   <div class="flex flex-space-between">
