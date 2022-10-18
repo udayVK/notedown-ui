@@ -80,6 +80,9 @@ button.light:active{
     background-color: #3c3c3c;
     color: white;
 }
+button.dark:active{
+    background-color: #000000;
+}
 .active{
     background-color: red;
 }
@@ -93,9 +96,6 @@ button.light:active{
     background-color: #93aebb;
     border-color: #90A4AE;
   }
-button.dark:active{
-    background-color: #000000;
-}
 .pointer{
     cursor: pointer;
 }
