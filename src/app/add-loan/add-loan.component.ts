@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Loan } from '../pojo/loan';
+import { Loan, defaultLoan } from '../pojo/loan';
 import { SpendsService } from '../spends.service';
 import Swal from 'sweetalert2';
 
@@ -23,7 +23,7 @@ export class AddLoanComponent implements OnInit {
 
   type:boolean=false;
 
-  loan: Loan  = {id:0, name:'', totalAmount: 0,pendingAmount:0, date: new Date(), reason:'',type:true,status:false};
+  loan: Loan  = defaultLoan;
 
   constructor(private route: ActivatedRoute,
               private spnSrv: SpendsService) { }

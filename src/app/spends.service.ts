@@ -5,7 +5,8 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { Goal } from './pojo/goal';
 import { Loan } from './pojo/loan';
-import { Spend } from './pojo/spend';
+import { Category } from './pojo/category';
+import { Spend } from "./pojo/spend";
 
 @Injectable({
   providedIn: 'root'
@@ -28,12 +29,15 @@ export class SpendsService {
   getSpendsOfMonth(month:number, year:number):Observable<Spend[]>{
     return this.http.get<Spend[]>(this.baseURL+`spend/${year}/${month}`);
   }
-  postSpend(sp:any){
-    console.log("add call in service")
-    return this.http.post<any>(this.baseURL+`spend/add`,sp);
+  postSpend(sp:Spend):Observable<Spend>{
+    console.log(sp)
+    return this.http.post<Spend>(this.baseURL+`spend/add`,sp);
   }
   getMonthlySpent(year:number, month:number):Observable<number> {
     return this.http.get<number>(this.baseURL+`spend/monthlyspent/${year}/${month}`);
+  }
+  getAllExistingCategories():Observable<Array<Category>>{
+    return this.http.get<Array<Category>>(this.baseURL+'spend/categories');
   }
 
 

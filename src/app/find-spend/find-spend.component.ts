@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Spend } from '../pojo/spend';
+import { Category } from '../pojo/category';
+import { Spend, defaultSpend }from '../pojo/spend';
 import { SpendsService } from '../spends.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { SpendsService } from '../spends.service';
 export class FindSpendComponent implements OnInit {
 
   // spendToSend:Spend[]=[{purpose:'',money:0,date:new Date(),toWhom:0}];
-  spends:Spend[]=[{purpose:'find.ts',money:0,date:new Date(),forOthers:0}];
+  spends:Spend[]=[defaultSpend];
   total:number=0;
   month:string='';
   constructor(private spnSrv: SpendsService) { }
