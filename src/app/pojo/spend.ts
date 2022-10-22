@@ -9,4 +9,4 @@ export interface Spend{
     category:Category;
 }
 
-export const defaultSpend = {id:0,purpose:'',date:new Date(),money:0,forOthers:0,category:defaultCategory} ;
+export const defaultSpend = {id:NaN,purpose:'',date:new Date(),money:NaN,forOthers:NaN,category:defaultCategory} ;

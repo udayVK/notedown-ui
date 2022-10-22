@@ -10,7 +10,8 @@ import { SpendsService } from '../spends.service';
 })
 export class AddExpenseComponent implements OnInit {
 
-  spendAdd:Spend = defaultSpend;
+  //using es6 spread operator to copy the values instead of reference
+  spendAdd:Spend = {...defaultSpend,category:{...defaultCategory}};
   monthlyLimit:number=0;
   monthlySpent:number=0;
   categories:Array<Category> = [defaultCategory];
@@ -28,7 +29,10 @@ export class AddExpenseComponent implements OnInit {
       return
     }
     this.spnSrv.postSpend(this.spendAdd).subscribe({
-                                          next:()=>{window.alert("Added");},
+                                          next:()=>{
+                                            window.alert("Added");
+                                            this.resetSpendForm();
+                                          },
                                           error:()=>{window.alert("error");},
                                           complete:()=>{this.getSpentData();this.getAllExistingCategories()}});
   }
@@ -48,6 +52,15 @@ export class AddExpenseComponent implements OnInit {
     this.spnSrv.getMonthlyLimit().subscribe((data)=>{this.monthlyLimit=data});
     this.spnSrv.getMonthlySpent(new Date().getFullYear(),new Date().getMonth()+1).subscribe((data)=>{this.monthlySpent=data});
   }
+
+  //reset the spend form to default except category, date
+  resetSpendForm(){
+    let spend:Spend = {...defaultSpend,category:{...defaultCategory}};
+    spend.category = this.spendAdd.category;
+    spend.date = this.spendAdd.date;
+    this.spendAdd = spend;
+  }
+
   ngOnInit(): void {
     this.getSpentData();
     this.getAllExistingCategories();
