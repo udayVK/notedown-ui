@@ -23,7 +23,7 @@ export class AddLoanComponent implements OnInit {
 
   type:boolean=false;
 
-  loan: Loan  = defaultLoan;
+  loan: Loan  = {...defaultLoan};
 
   constructor(private route: ActivatedRoute,
               private spnSrv: SpendsService) { }

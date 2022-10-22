@@ -11,7 +11,7 @@ import { SpendsService } from '../spends.service';
 export class FindSpendComponent implements OnInit {
 
   // spendToSend:Spend[]=[{purpose:'',money:0,date:new Date(),toWhom:0}];
-  spends:Spend[]=[defaultSpend];
+  spends:Spend[]=[{...defaultSpend}];
   total:number=0;
   month:string='';
   constructor(private spnSrv: SpendsService) { }

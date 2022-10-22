@@ -27,7 +27,7 @@ import { SpendsService } from '../spends.service';
 export class EditLoanComponent implements OnInit {
   
   @Input()
-  loan:Loan = defaultLoan;
+  loan:Loan = {...defaultLoan};
   @Output()
   editLoanEventEnd:EventEmitter<1>=new EventEmitter<1>();
 

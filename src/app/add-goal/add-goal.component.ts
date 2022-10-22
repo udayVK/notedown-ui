@@ -9,7 +9,7 @@ import { SpendsService } from '../spends.service';
 })
 export class AddGoalComponent implements OnInit {
 
-  addGoal:Goal = defaultGoal;
+  addGoal:Goal = {...defaultGoal};
 
   addNotif:string='';
   constructor(private spnSrv : SpendsService) { }
