@@ -1,23 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Loan } from '../pojo/loan';
-import { Spend } from '../pojo/spend';
+import { Loan, defaultLoan } from '../pojo/loan';
+import { Category } from '../pojo/category';
 import { SpendsService } from '../spends.service';
 
 @Component({
   selector: 'find-loan',
   template: 
-  `<form class="comp" *ngIf=!editLoanMode>
-   <h3 style="margin-top: 8px;">Month</h3>
-   <table>
-     <tr>
-       <td><input type="month" name="month" style="width:150px;" [(ngModel)]="month"></td>
-       <td><button type="button" (click)="findAllLoans()" style="margin-left:30px" class=" dark">Submit</button></td>
-     </tr>
-   </table>
-   </form>
+  `
+  <div *ngIf = "isLoading && !isError" class = "flex flex-row-center">
+    <loading></loading>
+  </div>
+  <div *ngIf = "isError">
+    <h4>Error Occured, sip some water.</h4>
+  </div>
+
+  <div *ngIf = "canShowLoanInfo()">
    <span>Total amount to be recovered is: {{totalReoveryAmount}}</span>
-   <h4>Loans</h4>
+
    <div *ngIf=!editLoanMode>
      <app-loan  [loans]="pendingLoans" (editLoanEvent)="listenEditLoanEvent($event)" name="Pending Loans" ></app-loan>
      <app-loan  [loans]="completedLoans" name="Completed Loans" ></app-loan>
@@ -25,6 +25,7 @@ import { SpendsService } from '../spends.service';
    <div *ngIf=editLoanMode>
       <edit-loan [loan]="loanToEdit" (editLoanEventEnd)="listenEditLoanEndEvent()"></edit-loan>
    </div>
+  </div>
 `,
   styleUrls: ['./find-loan.component.css']
 })
@@ -32,17 +33,23 @@ export class FindLoanComponent implements OnInit {
 
   //properties
   editLoanMode:boolean = false;
+  isLoading:boolean = false;
+  isError:boolean = false;
   
   //data
   month:string='';
-  loans:Loan[]=[{id:0,name:'', totalAmount: 0,pendingAmount:0, date: new Date(), reason: '', type:true,status:false}];
-  pendingLoans:Loan[]=[{id:0,name:'', totalAmount: 0,pendingAmount:0, date: new Date(), reason: '', type:true,status:false}];
-  completedLoans:Loan[]=[{id:0,name:'', totalAmount: 0,pendingAmount:0, date: new Date(), reason: '', type:true,status:false}];
+  loans:Loan[]=[defaultLoan];
+  pendingLoans:Loan[]=[defaultLoan];
+  completedLoans:Loan[]=[defaultLoan];
   totalReoveryAmount:number=0;
 
-  loanToEdit:Loan = {id:0,name:'', totalAmount: 0,pendingAmount:0, date: new Date(), reason: '', type:true,status:false}
+  loanToEdit:Loan = defaultLoan;
   
   constructor(private spnSrv: SpendsService) { }
+
+  canShowLoanInfo(){
+    return !this.isLoading && !this.isError ? true : false;
+  }
 
   //ng on init method calls this one
   findAllLoans(){
@@ -51,7 +58,10 @@ export class FindLoanComponent implements OnInit {
         this.loans=data;
         this.classifyLoans();
         this.findTotalPendingAmount();
-      }
+        this.isLoading = false;
+        this.isError = false;
+      },
+      error:(error)=>{this.isError=true}
   
     });
   }
@@ -65,7 +75,6 @@ export class FindLoanComponent implements OnInit {
     console.log("listening edit loan event");
     this.loanToEdit = loan;
     this.editLoanMode = true;
-
   }
   listenEditLoanEndEvent(){
     this.editLoanMode = false;
@@ -76,6 +85,7 @@ export class FindLoanComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.findAllLoans();
   }
 }

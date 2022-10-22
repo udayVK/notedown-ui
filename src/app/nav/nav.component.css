@@ -3,9 +3,19 @@
 }
 .navitem{
     background-color: #93aebb;
-    border-color: #90A4AE;
+    width: 25%;
+    height: 4.3vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.navitem:hover{
+    background-color: #CFD8DC;
+    border: 2px #90A4AE solid;
+    color: black;
 }
 .nav{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    margin: auto;
 }

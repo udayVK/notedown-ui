@@ -4,20 +4,13 @@ import { SpendsService } from '../spends.service';
 @Component({
   selector: 'app-limit',
   template: `
-  <div class="comp">
-    <span>Set Monthly Limit(beta)</span>
-    <input name="limit" type="number" min="100" max="10000" class="big" placeholder="enter amount" [(ngModel)]="limitAM">
+  <span>Set Monthly Limit</span>
+  <div class="flex flex-space-between">
+    <input name="limit" type="number" min="100" max="10000" class="input s-input" placeholder="enter amount" [(ngModel)]="limitAM">
     <button class="dark med" (click)="addMonthlyLimit()">Set</button>
   </div>
 `,
-  styles: [`
-  .med{
-    width: 60px;
-  }
-  .big{
-    width: 150px;
-  }
-  `]
+  styles: []
 })
 export class LimitComponent implements OnInit {
 

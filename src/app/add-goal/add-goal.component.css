@@ -1,10 +1,11 @@
 .add-goal{
-    width: 237px;
+    width: 95%;
     height: 70px;
     padding: 2px;
     resize: vertical;
     max-height: 150px;
     min-height: 70px;
+    margin: 1%;
     border-radius: 8px;
     border: 2px solid black;
     border-bottom: 2px grey solid;

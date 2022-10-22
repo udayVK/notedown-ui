@@ -24,6 +24,7 @@ import { LoanComponent } from './loan/loan.component';
 import { AddGoalComponent } from './add-goal/add-goal.component';
 import { FindGoalComponent } from './find-goal/find-goal.component';
 import { EditLoanComponent } from './edit-loan/edit-loan.component';
+import { LoaderComponent } from './loader/loader.component';
 
 
 
@@ -46,6 +47,7 @@ import { EditLoanComponent } from './edit-loan/edit-loan.component';
     AddGoalComponent,
     FindGoalComponent,
     EditLoanComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,

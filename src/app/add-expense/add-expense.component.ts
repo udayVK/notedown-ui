@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import Swal from 'sweetalert2';
-import { Spend } from '../pojo/spend';
+import { Category, defaultCategory } from '../pojo/category';
+import {Spend, defaultSpend }from '../pojo/spend';
 import { SpendsService } from '../spends.service';
 
 @Component({
@@ -9,9 +10,11 @@ import { SpendsService } from '../spends.service';
 })
 export class AddExpenseComponent implements OnInit {
 
-  spendAdd:Spend = {purpose:'',money:0,date:new Date(),forOthers:0};
+  spendAdd:Spend = defaultSpend;
   monthlyLimit:number=0;
   monthlySpent:number=0;
+  categories:Array<Category> = [defaultCategory];
+
   @ViewChild('addexpform')
   expForm!:ElementRef;
   
@@ -19,34 +22,26 @@ export class AddExpenseComponent implements OnInit {
   constructor(private spnSrv: SpendsService) { }
 
   addSpend(){
-    console.log('calling add ')
+    console.log('calling add spend');
     if(this.validateForm()){
       console.log('add form validation failed');
       return
     }
-    let obj = {purpose:'',money:0,date:new Date(),forOthers:0};
-    obj.date=this.spendAdd.date;
-    obj.money=this.spendAdd.money;
-    obj.purpose=this.spendAdd.purpose;
-    obj.date=this.spendAdd.date;
-    obj.forOthers=this.spendAdd.forOthers;
-    this.spnSrv.postSpend(obj).subscribe({
+    this.spnSrv.postSpend(this.spendAdd).subscribe({
                                           next:()=>{window.alert("Added");},
                                           error:()=>{window.alert("error");},
-                                          complete:()=>{this.getSpentData()}});
+                                          complete:()=>{this.getSpentData();this.getAllExistingCategories()}});
   }
 
   validateForm():boolean {
-    if(this.spendAdd.purpose!=''){
-      return false;
-    }
-    if(this.spendAdd.money<0){
-      return false;
-    }
-    if(this.spendAdd.date!=null){
+    //returns false for good form, true for bad form
+    if(this.spendAdd.category.heading!=''){
       return false;
     }
     return true;
+  }
+  getAllExistingCategories(){
+    this.spnSrv.getAllExistingCategories().subscribe({next:(data)=>{this.categories = data},});
   }
 
   getSpentData(){
@@ -55,7 +50,7 @@ export class AddExpenseComponent implements OnInit {
   }
   ngOnInit(): void {
     this.getSpentData();
-    
+    this.getAllExistingCategories();
   }
 
   //trying to reset the form after it loads but its not working
