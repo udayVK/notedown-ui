@@ -38,9 +38,9 @@ export class FindLoanComponent implements OnInit {
   
   //data
   month:string='';
-  loans:Loan[]=[defaultLoan];
-  pendingLoans:Loan[]=[defaultLoan];
-  completedLoans:Loan[]=[defaultLoan];
+  loans:Loan[]=[{...defaultLoan}];
+  pendingLoans:Loan[]=[{...defaultLoan}];
+  completedLoans:Loan[]=[{...defaultLoan}];
   totalReoveryAmount:number=0;
 
   loanToEdit:Loan = defaultLoan;

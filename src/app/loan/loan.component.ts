@@ -11,7 +11,7 @@ import { SpendsService } from '../spends.service';
 export class LoanComponent implements OnInit {
 
   @Input()
-  loans:Loan[]=[defaultLoan];
+  loans:Loan[]=[{...defaultLoan}];
   @Input()
   name:string ='';
   @Output()

@@ -9,7 +9,7 @@ import { SpendsService } from '../spends.service';
 })
 export class FindGoalComponent implements OnInit {
 
-  goals:Goal[]=[defaultGoal]
+  goals:Goal[]=[{...defaultGoal}]
   constructor(private spnSrv : SpendsService) { }
 
   findAllGoals(){

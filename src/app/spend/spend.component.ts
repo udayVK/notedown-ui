@@ -12,7 +12,7 @@ export class SpendComponent implements OnInit {
   
   // spend:Spend = {purpose:'test',money:20,date:new Date(),toWhom:2};
   @Input()
-  spends:Spend[] = [defaultSpend];
+  spends:Spend[] = [{...defaultSpend}];
   constructor() { }
 
   ngOnInit(): void {
