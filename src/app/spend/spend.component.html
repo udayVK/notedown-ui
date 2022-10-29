@@ -1,12 +1,13 @@
 <div>
-    <div *ngFor="let spend of spends">
-        <div class="flex flex-space-between">
-            <span>{{spend.category.heading}} - {{spend.purpose}}</span>
-        </div>
-
-        <div class="flex flex-space-between">
-            <span>Me - ₹ {{spend.money}}</span>
-            <span>Others - ₹ {{spend.forOthers}} </span>
+    <div *ngFor="let category of spends.spendMap.keys()">
+        <div>{{category}}</div>
+        <div>
+            <div *ngFor="let sp of spends.spendMap.get(category)" class="flex flex-space-between">
+                <span>{{sp.purpose}}</span>
+                <span>{{sp.date}}</span>
+                <span>Me - ₹ {{sp.money}}</span>
+                <span *ngIf="sp.forOthers!=0">Others - ₹ {{sp.forOthers}} </span>
+            </div>
         </div>
     </div>
 </div>
