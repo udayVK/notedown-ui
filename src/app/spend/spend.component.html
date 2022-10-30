@@ -2,11 +2,11 @@
     <div *ngFor="let category of spends.spendMap.keys()">
         <div>{{category}}</div>
         <div>
-            <div *ngFor="let sp of spends.spendMap.get(category)" class="flex flex-space-between">
-                <span>{{sp.purpose}}</span>
-                <span>{{sp.date}}</span>
-                <span>Me - ₹ {{sp.money}}</span>
-                <span *ngIf="sp.forOthers!=0">Others - ₹ {{sp.forOthers}} </span>
+            <div *ngFor="let sp of spends.spendMap.get(category)" class="grid-container indent">
+                <span class="grid-item">{{sp.purpose}}</span>
+                <span class="grid-item">{{sp.date}}</span>
+                <span class="grid-item">Me - ₹ {{sp.money}}</span>
+                <span *ngIf="sp.forOthers!=0"  class="row-item">Others - ₹ {{sp.forOthers}} </span>
             </div>
         </div>
     </div>
