@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
@@ -14,7 +14,16 @@ import { Spend } from "./pojo/spend";
 export class SpendsService {
 
   baseURL = "http://localhost:8080/";
+  public darkTheme: boolean = false;
+  public commonEvent: EventEmitter<string> = new EventEmitter<string>();
+
   constructor(private http: HttpClient) { }
+  
+  //use this event emitter to emit event from any component and make it listened by any component
+  //Global event, baby
+  emitCommonEvent(eventvalue:string){
+    this.commonEvent.emit(eventvalue);
+  }
 
   //data
   setMonthlyLimit(limit: number) {
@@ -69,4 +78,6 @@ export class SpendsService {
     return this.http.put<number>(this.baseURL+'goal/change',id);
   }
   
+  //Dark Theme
+
 }

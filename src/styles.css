@@ -1,7 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+:root{
+    --bgc: #CFD8DC;
+    --c: black;
+}
 body{
-    background-color: #CFD8DC;
-    color: black;
+    background-color: var(--bgc);
+    color: var(--c);
     display: flex;
     justify-content: space-around;
     padding-top: 30px;

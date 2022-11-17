@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SpendsService } from '../spends.service';
 
 @Component({
   selector: 'app-nav',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavComponent implements OnInit {
 
-  constructor() { }
+  darkTheme:boolean = false;
+  constructor(private spnSrv: SpendsService) { 
+    this.spnSrv.commonEvent.subscribe((theme)=>{ theme==='dark'?this.darkTheme=true:this.darkTheme=false })
+  }
 
   ngOnInit(): void {
   }
