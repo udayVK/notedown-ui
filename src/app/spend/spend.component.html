@@ -5,8 +5,8 @@
             <div *ngFor="let sp of spends.spendMap.get(category)" class="grid-container indent">
                 <span class="grid-item">{{sp.purpose}}</span>
                 <span class="grid-item">{{sp.date}}</span>
-                <span class="grid-item">Me - ₹ {{sp.money}}</span>
-                <span *ngIf="sp.forOthers!=0"  class="row-item">Others - ₹ {{sp.forOthers}} </span>
+                <span class="grid-item">₹{{sp.money}}<span *ngIf="sp.forOthers!=0">::{{sp.forOthers}}</span></span>
+                <!-- <span *ngIf="sp.forOthers!=0"  class="row-item">Others - ₹ {{sp.forOthers}} </span> -->
             </div>
         </div>
     </div>

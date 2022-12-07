@@ -3,6 +3,6 @@
 }
 .grid-container {
     display: grid;
-    grid-template-columns: 33% 33% 33%;
-    gap: 10px;
+    grid-template-columns: 55% 20% 25%;
+    gap: 5px;
 }
