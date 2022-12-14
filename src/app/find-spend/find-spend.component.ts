@@ -11,17 +11,31 @@ import { SpendsService } from '../spends.service';
 export class FindSpendComponent implements OnInit {
 
   // spendToSend:Spend[]=[{purpose:'',money:0,date:new Date(),toWhom:0}];
-  spends:Spend[]=[{...defaultSpend}];
   total:number=0;
   month:string='';
+  //spend object that is easy to render
+  spendsToRender:SpendRender = {spendMap:new Map}
+  
   constructor(private spnSrv: SpendsService) { }
 
   searchSpecefic(){
     let full = this.month.split('-');
     let month = Number(full[0]);
     let year = Number(full[1]);
-    this.spnSrv.getSpendsOfMonth(year,month).subscribe((data:Spend[])=>{this.spends=data})
+    this.spnSrv.getSpendsOfMonth(year,month).subscribe((data:Spend[])=>{this.convertToRenderSpends(data)})
     this.getmonthlySpent();
+  }
+
+  convertToRenderSpends(spends:Spend[]){
+    let spendsMap:Map<string,Spend[]> = new Map();
+    spends.forEach(sp=>{
+      if(spendsMap.has(sp.category.heading)){
+        spendsMap.get(sp.category.heading)?.push(sp)
+      }
+      else{spendsMap.set(sp.category.heading,[sp])}
+    });
+    this.spendsToRender = {spendMap:spendsMap};
+    console.log(this.spendsToRender);
   }
 
   getMonthArrFromString(month:string){
@@ -40,4 +54,8 @@ export class FindSpendComponent implements OnInit {
     this.spnSrv.getMonthlySpent(Number(full[0]),Number(full[1])).subscribe({next:(data:number)=>{this.total=data},
                                                                             error:()=>{this.total=0}});
   }
+}
+
+export interface SpendRender {
+  spendMap: Map<string, Spend[]>;
 }

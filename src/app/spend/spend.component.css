@@ -1,0 +1,8 @@
+.indent{
+    margin-left: 10px;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: 55% 20% 25%;
+    gap: 5px;
+}
