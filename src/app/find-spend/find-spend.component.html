@@ -5,8 +5,7 @@
       <input class="input m-input" type="month" name="month"  [(ngModel)]="month">
       <button type="button" (click)="searchSpecefic()" style="margin-left:20px" class=" dark">Submit</button>
     </div>
-
-    <h4>Spends</h4>
+    <h4 routerLink="/add/exp" class="pointer">➕Spends</h4>
     <app-spend  [spends]="spendsToRender" ></app-spend>
     <hr>
     <span>Total: ₹{{total}}</span>
