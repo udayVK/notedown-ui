@@ -14,7 +14,7 @@ export class FindSpendComponent implements OnInit {
   total:number=0;
   month:string='';
   //spend object that is easy to render
-  spendsToRender:SpendRender = {spendMap:new Map}
+  spendsToRender:SpendRender = {spendMap:new Map<string, Spend[]>}
   
   constructor(private spnSrv: SpendsService) { }
 
