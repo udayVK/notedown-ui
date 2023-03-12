@@ -15,11 +15,12 @@ export interface Loan{
     loanHistory:Array<LoanHistory>
 }
 
-interface LoanHistory{
+export interface LoanHistory{
     id:number;
     amount:number;
     type:boolean;
     date:Date;
 }
 
+export const defaultLoanHistory:LoanHistory = {id:NaN, amount:NaN, type:false, date:new Date()};
 export const defaultLoan:Loan = {id:0, name:'', totalAmount: 0,pendingAmount:0, date: new Date(), reason:'',type:true,status:false,loanHistory:[]};
