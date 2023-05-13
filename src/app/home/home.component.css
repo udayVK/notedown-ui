@@ -3,6 +3,29 @@
     font-weight: bold;
     margin-top: 4px;
 }
-.feature::before{
-    content: '◾      ';
+.home-grid{
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+.feature{
+    padding: 20px;
+    width: 90%;
+    height: 120px;
+    border: 2px #90a4ae solid;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 10px;
+    background-color: #93aebb;
+    font-size: larger;
+    font-weight: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.feature:hover{
+    /* margin: 20px;
+    width: 80%;
+    height: 100px; */
+    border-left: 20px #688391 solid;
+    border-top: 20px #688391 solid;
 }
