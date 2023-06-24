@@ -1,5 +1,3 @@
-import { Data } from "@angular/router";
-
 export interface Loan{
     id:number
     name: string;
@@ -14,6 +12,15 @@ export interface Loan{
     //true if loan repaid
     //false if yet to pay
     status:boolean;
+    loanHistory:Array<LoanHistory>
 }
 
-export const defaultLoan:Loan = {id:0, name:'', totalAmount: 0,pendingAmount:0, date: new Date(), reason:'',type:true,status:false};
+export interface LoanHistory{
+    id:number;
+    amount:number;
+    type:boolean;
+    date:Date;
+}
+
+export const defaultLoanHistory:LoanHistory = {id:NaN, amount:NaN, type:false, date:new Date()};
+export const defaultLoan:Loan = {id:0, name:'', totalAmount: 0,pendingAmount:0, date: new Date(), reason:'',type:true,status:false,loanHistory:[]};

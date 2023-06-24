@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { Goal } from './pojo/goal';
-import { Loan } from './pojo/loan';
+import { Loan, LoanHistory } from './pojo/loan';
 import { Category } from './pojo/category';
 import { Spend } from "./pojo/spend";
 
@@ -12,10 +12,10 @@ import { Spend } from "./pojo/spend";
   providedIn: 'root'
 })
 export class SpendsService {
-
+  
   baseURL = "http://localhost:8080/";
   constructor(private http: HttpClient) { }
-
+  
   //data
   setMonthlyLimit(limit: number) {
     return this.http.post<number>(this.baseURL+`data/monthlylimit/${limit}`,'');
@@ -38,14 +38,14 @@ export class SpendsService {
   getAllExistingCategories():Observable<Array<Category>>{
     return this.http.get<Array<Category>>(this.baseURL+'spend/categories');
   }
-
-
+  
+  
   //loan
   addLoan(l:Loan){
     return this.http.post<Loan>(this.baseURL+'loan/new',l);
   }
   findAllLoans():Observable<Loan[]>{
-   return this.http.get<Loan[]>(this.baseURL+'loan/all');
+    return this.http.get<Loan[]>(this.baseURL+'loan/all');
   }
   changeLoanStatus(id:number){
     return this.http.get(this.baseURL+'loan/change?lid='+id);
@@ -55,6 +55,11 @@ export class SpendsService {
   }
   getTotalRecoveryAmount():Observable<number> {
     return this.http.get<number>(this.baseURL+'loan/pending/all');
+  }
+  addLoanHistory(loanHistory:LoanHistory, loanId:number):Observable<Loan> {
+    console.log(loanHistory);
+    console.log(loanId);
+    return this.http.post<Loan>(this.baseURL+'loan/pay/add?loanid='+loanId, loanHistory);
   }
 
   //goal

@@ -14,6 +14,9 @@ import { SpendsService } from '../spends.service';
   <div *ngIf = "isError">
     <h4>Error Occured, sip some water.</h4>
   </div>
+  <div>
+    <h4 class="pointer" routerLink="/add/loan">➕Loans</h4>
+  </div>
 
   <div *ngIf = "canShowLoanInfo()">
    <span>Total amount to be recovered is: {{totalReoveryAmount}}</span>

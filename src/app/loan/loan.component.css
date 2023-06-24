@@ -1,0 +1,6 @@
+.expander:hover .collapsible{
+    display: block;
+}
+.collapsible{
+    display: none;
+}
