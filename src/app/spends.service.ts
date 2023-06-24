@@ -7,6 +7,7 @@ import { Goal } from './pojo/goal';
 import { Loan, LoanHistory } from './pojo/loan';
 import { Category } from './pojo/category';
 import { Spend } from "./pojo/spend";
+import LoginCargo from './pojo/LoginCargo';
 
 @Injectable({
   providedIn: 'root'
@@ -72,6 +73,14 @@ export class SpendsService {
   changeGoalStatus(id: number) {
     console.log(id);
     return this.http.put<number>(this.baseURL+'goal/change',id);
+  }
+
+  //user
+  login(loginCargo:LoginCargo):Observable<string>{
+    let url = 'http://localhost:8080/secure/user';
+    let loginStatus = this.http.post<string>(url,{userName:'omkar',password:'bro'});
+    console.log(loginStatus,'service')
+    return loginStatus;
   }
   
 }

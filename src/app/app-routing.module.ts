@@ -12,6 +12,9 @@ import { FindComponent } from './find/find.component';
 import { HomeComponent } from './home/home.component';
 import { LimitComponent } from './limit/limit.component';
 import { MiscComponent } from './misc/misc.component';
+import { WelcomeComponent } from './welcome/welcome.component';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 
 const routes: Routes = [
   {path:"add", component : AddComponent },
@@ -26,8 +29,12 @@ const routes: Routes = [
   {path:"edit/loan/:id" ,component: EditLoanComponent},
   {path:"add/goal", component : AddGoalComponent },
   {path:"find/goal", component : FindGoalComponent},
+  {path:"home", component : HomeComponent},
+  {path:"welcome", component : WelcomeComponent},
+  {path:"login", component : LoginComponent},
+  {path:"signup", component : SignupComponent},
 
-  {path: "**",component : HomeComponent },
+  {path: "**",component : WelcomeComponent},
 ];
 
 @NgModule({

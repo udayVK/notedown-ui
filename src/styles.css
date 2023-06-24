@@ -105,7 +105,7 @@ button.dark:active{
 .tile{
     padding: 20px;
     width: 90%;
-    height: 120px;
+    /* height: px; */
     border: 2px #90a4ae solid;
     border-radius: 10px;
     cursor: pointer;
@@ -124,4 +124,7 @@ button.dark:active{
     height: 100px; */
     border-left: 20px #688391 solid;
     border-top: 20px #688391 solid;
+}
+.required{
+    color: red;
 }

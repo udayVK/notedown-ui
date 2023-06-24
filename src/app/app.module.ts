@@ -25,6 +25,9 @@ import { AddGoalComponent } from './add-goal/add-goal.component';
 import { FindGoalComponent } from './find-goal/find-goal.component';
 import { EditLoanComponent } from './edit-loan/edit-loan.component';
 import { LoaderComponent } from './loader/loader.component';
+import { WelcomeComponent } from './welcome/welcome.component';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 
 
 
@@ -48,6 +51,9 @@ import { LoaderComponent } from './loader/loader.component';
     FindGoalComponent,
     EditLoanComponent,
     LoaderComponent,
+    WelcomeComponent,
+    LoginComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
