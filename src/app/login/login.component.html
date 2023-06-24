@@ -1,0 +1,16 @@
+<div>
+    <div>
+        <div class="flex flex-space-between">
+            <span>Username<span class="required">*</span></span>
+            <input class="input" type="text" placeholder="who are you" [(ngModel)]="loginCargo.username">
+        </div>
+        <div class="flex flex-space-between">
+            <span>Password<span class="required">*</span></span>
+            <input class="input" type="text" placeholder="pls confirm" [(ngModel)]="loginCargo.password">
+        </div>
+    </div>
+    <div class="flex flex-space-around">
+        <button class="dark" (click)="login()">Submit</button>
+        <button class="light" routerLink="/welcome" (click)="cancel()">Cancel</button>
+    </div>
+</div>
