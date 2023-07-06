@@ -3,12 +3,12 @@
     <h3 routerLink="/add/exp" class="pointer">➕Spends</h3>
 
     <div class="flex flex-space-around">
-      <div class="flex flex-vertical-center">
+      <div>
         <strong class="month-navigatiors pointer" (click)="navigateMonth('-')">🡨</strong>
-        <h4 style="margin-top: 8px;">Month</h4>
+        <!-- <h4 style="margin-top: 8px;">Month</h4> -->
+        <input class="input m-input" type="month" name="month"  [(ngModel)]="month" (change)="searchSpecefic()">
         <strong class="month-navigatiors pointer" (click)="navigateMonth('+')">🡪</strong>
       </div>
-      <input class="input s-input" type="month" name="month"  [(ngModel)]="month" (change)="searchSpecefic()">
       <!-- <button type="button" (click)="searchSpecefic()" style="margin-left:20px" class=" dark">Submit</button> -->
     </div>
 
