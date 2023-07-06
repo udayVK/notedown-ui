@@ -19,8 +19,8 @@ export class FindSpendComponent implements OnInit {
   constructor(private spnSrv: SpendsService) { }
 
   searchSpecefic(){
-    console.log("in search" + this.month);
-    let full = this.month.split('-');
+    console.log("fetching spends of" + this.month);
+    let full = this.getMonthArrFromString(this.month)
     let month = Number(full[0]);
     let year = Number(full[1]);
     this.spnSrv.getSpendsOfMonth(year,month).subscribe((data:Spend[])=>{this.convertToRenderSpends(data)})
@@ -36,7 +36,6 @@ export class FindSpendComponent implements OnInit {
       else{spendsMap.set(sp.category.heading,[sp])}
     });
     this.spendsToRender = {spendMap:spendsMap};
-    console.log(this.spendsToRender);
   }
 
   getMonthArrFromString(month:string){
@@ -49,7 +48,6 @@ export class FindSpendComponent implements OnInit {
     let currentMonth = now.getFullYear().toString()+'-'+(now.getMonth()+1).toString();
     this.month = this.correctTheMonth(currentMonth);
     this.searchSpecefic();
-    console.log(document.getElementById('expenseInput')?.nodeValue)
   }
 
   getmonthlySpent(){
@@ -60,9 +58,7 @@ export class FindSpendComponent implements OnInit {
 
   // gives month of format yyyy-mm
   correctTheMonth(givenMonth:string){
-    console.log(givenMonth);
     let monthData = this.getMonthArrFromString(givenMonth);
-    // console.log(monthData);
     let returMonth = monthData[0] + '-';
     if((monthData[1]).length === 1) {
       returMonth += '0'
@@ -72,8 +68,6 @@ export class FindSpendComponent implements OnInit {
   }
 
   navigateMonth(flag:string){
-    console.log(flag);
-    console.log(this.month);
     let monthToNavigate = '';
     let detailMonth = this.getMonthArrFromString(this.month);
     if(flag == '+'){
@@ -98,7 +92,6 @@ export class FindSpendComponent implements OnInit {
       }
     }
     this.month = this.correctTheMonth(monthToNavigate);
-    console.log(this.month);
     this.searchSpecefic();
   }
 
