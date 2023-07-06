@@ -40,13 +40,14 @@ export class FindSpendComponent implements OnInit {
   }
 
   getMonthArrFromString(month:string){
-    let full = this.month.split('-');
+    let full = month.split('-');
     return full;
   }
 
   ngOnInit(): void {
     let now = new Date();
-    this.month = now.getFullYear().toString()+'-'+(now.getMonth()+1).toString();
+    let currentMonth = now.getFullYear().toString()+'-'+(now.getMonth()+1).toString();
+    this.month = this.correctTheMonth(currentMonth);
     this.searchSpecefic();
     console.log(document.getElementById('expenseInput')?.nodeValue)
   }
@@ -57,13 +58,26 @@ export class FindSpendComponent implements OnInit {
                                                                             error:()=>{this.total=0}});
   }
 
+  // gives month of format yyyy-mm
+  correctTheMonth(givenMonth:string){
+    console.log(givenMonth);
+    let monthData = this.getMonthArrFromString(givenMonth);
+    // console.log(monthData);
+    let returMonth = monthData[0] + '-';
+    if((monthData[1]).length === 1) {
+      returMonth += '0'
+    }
+    returMonth += monthData[1];
+    return returMonth;
+  }
+
   navigateMonth(flag:string){
     console.log(flag);
     console.log(this.month);
     let monthToNavigate = '';
     let detailMonth = this.getMonthArrFromString(this.month);
     if(flag == '+'){
-      if(detailMonth[1] == '12'){
+      if(parseInt(detailMonth[1]) == 12){
         monthToNavigate += parseInt(detailMonth[0])+1
         monthToNavigate += '-';
         monthToNavigate += '1';
@@ -73,7 +87,7 @@ export class FindSpendComponent implements OnInit {
         monthToNavigate += parseInt(detailMonth[1])+1
       }
     } else {
-      if(detailMonth[1] == '1'){
+      if(parseInt(detailMonth[1]) == 1){
         monthToNavigate += parseInt(detailMonth[0])-1
         monthToNavigate += '-';
         monthToNavigate += '12';
@@ -83,7 +97,7 @@ export class FindSpendComponent implements OnInit {
         monthToNavigate += parseInt(detailMonth[1])-1
       }
     }
-    this.month = monthToNavigate;
+    this.month = this.correctTheMonth(monthToNavigate);
     console.log(this.month);
     this.searchSpecefic();
   }
