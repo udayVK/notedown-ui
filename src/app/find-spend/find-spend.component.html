@@ -4,11 +4,11 @@
 
     <div class="flex flex-space-around">
       <div class="flex flex-vertical-center">
-        <strong>🡨</strong> 
+        <strong class="month-navigatiors pointer" (click)="navigateMonth('-')">🡨</strong>
         <h4 style="margin-top: 8px;">Month</h4>
-        <strong>🡪</strong>
+        <strong class="month-navigatiors pointer" (click)="navigateMonth('+')">🡪</strong>
       </div>
-      <input class="input m-input" type="month" name="month"  [(ngModel)]="month" (change)="searchSpecefic()">
+      <input class="input s-input" type="month" name="month"  [(ngModel)]="month" (change)="searchSpecefic()" id="expenseInput">
       <!-- <button type="button" (click)="searchSpecefic()" style="margin-left:20px" class=" dark">Submit</button> -->
     </div>
 

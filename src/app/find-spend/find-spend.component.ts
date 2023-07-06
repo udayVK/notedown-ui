@@ -19,6 +19,7 @@ export class FindSpendComponent implements OnInit {
   constructor(private spnSrv: SpendsService) { }
 
   searchSpecefic(){
+    console.log("in search" + this.month);
     let full = this.month.split('-');
     let month = Number(full[0]);
     let year = Number(full[1]);
@@ -45,8 +46,9 @@ export class FindSpendComponent implements OnInit {
 
   ngOnInit(): void {
     let now = new Date();
-    this.month = now.getFullYear().toString()+'-'+(now .getMonth()+1).toString();
+    this.month = now.getFullYear().toString()+'-'+(now.getMonth()+1).toString();
     this.searchSpecefic();
+    console.log(document.getElementById('expenseInput')?.nodeValue)
   }
 
   getmonthlySpent(){
@@ -54,6 +56,38 @@ export class FindSpendComponent implements OnInit {
     this.spnSrv.getMonthlySpent(Number(full[0]),Number(full[1])).subscribe({next:(data:number)=>{this.total=data},
                                                                             error:()=>{this.total=0}});
   }
+
+  navigateMonth(flag:string){
+    console.log(flag);
+    console.log(this.month);
+    let monthToNavigate = '';
+    let detailMonth = this.getMonthArrFromString(this.month);
+    if(flag == '+'){
+      if(detailMonth[1] == '12'){
+        monthToNavigate += parseInt(detailMonth[0])+1
+        monthToNavigate += '-';
+        monthToNavigate += '1';
+      } else {
+        monthToNavigate += detailMonth[0];
+        monthToNavigate += '-';
+        monthToNavigate += parseInt(detailMonth[1])+1
+      }
+    } else {
+      if(detailMonth[1] == '1'){
+        monthToNavigate += parseInt(detailMonth[0])-1
+        monthToNavigate += '-';
+        monthToNavigate += '12';
+      } else {
+        monthToNavigate += detailMonth[0];
+        monthToNavigate += '-';
+        monthToNavigate += parseInt(detailMonth[1])-1
+      }
+    }
+    this.month = monthToNavigate;
+    console.log(this.month);
+    this.searchSpecefic();
+  }
+
 }
 
 export interface SpendRender {
