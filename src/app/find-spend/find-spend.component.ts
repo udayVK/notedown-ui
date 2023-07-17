@@ -19,7 +19,8 @@ export class FindSpendComponent implements OnInit {
   constructor(private spnSrv: SpendsService) { }
 
   searchSpecefic(){
-    let full = this.month.split('-');
+    console.log("fetching spends of" + this.month);
+    let full = this.getMonthArrFromString(this.month)
     let month = Number(full[0]);
     let year = Number(full[1]);
     this.spnSrv.getSpendsOfMonth(year,month).subscribe((data:Spend[])=>{this.convertToRenderSpends(data)})
@@ -35,17 +36,17 @@ export class FindSpendComponent implements OnInit {
       else{spendsMap.set(sp.category.heading,[sp])}
     });
     this.spendsToRender = {spendMap:spendsMap};
-    console.log(this.spendsToRender);
   }
 
   getMonthArrFromString(month:string){
-    let full = this.month.split('-');
+    let full = month.split('-');
     return full;
   }
 
   ngOnInit(): void {
     let now = new Date();
-    this.month = now.getFullYear().toString()+'-'+(now .getMonth()+1).toString();
+    let currentMonth = now.getFullYear().toString()+'-'+(now.getMonth()+1).toString();
+    this.month = this.correctTheMonth(currentMonth);
     this.searchSpecefic();
   }
 
@@ -54,6 +55,46 @@ export class FindSpendComponent implements OnInit {
     this.spnSrv.getMonthlySpent(Number(full[0]),Number(full[1])).subscribe({next:(data:number)=>{this.total=data},
                                                                             error:()=>{this.total=0}});
   }
+
+  // gives month of format yyyy-mm
+  correctTheMonth(givenMonth:string){
+    let monthData = this.getMonthArrFromString(givenMonth);
+    let returMonth = monthData[0] + '-';
+    if((monthData[1]).length === 1) {
+      returMonth += '0'
+    }
+    returMonth += monthData[1];
+    return returMonth;
+  }
+
+  navigateMonth(flag:string){
+    let monthToNavigate = '';
+    let detailMonth = this.getMonthArrFromString(this.month);
+    if(flag == '+'){
+      if(parseInt(detailMonth[1]) == 12){
+        monthToNavigate += parseInt(detailMonth[0])+1
+        monthToNavigate += '-';
+        monthToNavigate += '1';
+      } else {
+        monthToNavigate += detailMonth[0];
+        monthToNavigate += '-';
+        monthToNavigate += parseInt(detailMonth[1])+1
+      }
+    } else {
+      if(parseInt(detailMonth[1]) == 1){
+        monthToNavigate += parseInt(detailMonth[0])-1
+        monthToNavigate += '-';
+        monthToNavigate += '12';
+      } else {
+        monthToNavigate += detailMonth[0];
+        monthToNavigate += '-';
+        monthToNavigate += parseInt(detailMonth[1])-1
+      }
+    }
+    this.month = this.correctTheMonth(monthToNavigate);
+    this.searchSpecefic();
+  }
+
 }
 
 export interface SpendRender {
