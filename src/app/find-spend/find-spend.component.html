@@ -3,15 +3,15 @@
   <h3 routerLink="/add/exp" class="pointer">➕Spends</h3>
     <div class="flex flex-space-around">
       <div>
-        <strong class="month-navigatiors pointer" (click)="navigateMonth('-')">🡨</strong>
+        <strong class="month-navigatiors pointer" (click)="navigateMonth('-')">⇦</strong>
         <input class="input m-input" type="month" name="month"  [(ngModel)]="month" (change)="searchSpecefic()">
-        <strong class="month-navigatiors pointer" (click)="navigateMonth('+')">🡪</strong>
+        <strong class="month-navigatiors pointer" (click)="navigateMonth('+')">⇨</strong>
       </div>
     </div>
 
     <app-spend  [spends]="spendsToRender" ></app-spend>
     <hr>
-    <span>Total: ₹{{total}}</span>
+    <span>Total: ₹{{total | number}}</span>
   <hr>
     
 </form>

@@ -11,7 +11,7 @@
             <div class="flex flex-space-between">
                 <span>on {{loan.date}}</span>
                 <span *ngIf="!loan.type" [style]="{color:'red'}">FROM</span>
-                <span *ngIf="loan.type" [style]="{color:'red'}">TO</span>
+                <span *ngIf="loan.type" [style]="{color:'green'}">TO</span>
                 <span class="pointer" *ngIf="!loan.status" (click)="changeLoanStatus(loan.id)">❌</span>
                 <span class="pointer" *ngIf="loan.status" (click)="changeLoanStatus(loan.id)">✅</span>
             </div>
