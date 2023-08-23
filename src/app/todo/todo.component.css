@@ -1,0 +1,49 @@
+.todo {
+    margin: 5px;
+    font-size: 130%;
+}
+
+input[type=checkbox] {
+    font-size: larger;
+    margin: 4px 4px 4px 4px;
+    
+    
+    background-color: #fff;
+    /* height: 50px; */
+    border: 0.15em solid currentColor;
+    border-radius: 0.15em;
+    transform: translateY(-0.075em);
+    /* width: 50px; */
+    
+    /* appearance: none; */
+    /* border: 2px solid red; */
+    /* background-color: red; */
+    /* width: 100%; */
+}
+
+input[disabled] {
+    color: red;
+    background-color: blue;
+    border: 5px black solid;
+    /* margin-left: 20px; */
+}
+
+.done-symbol {
+    height: 50px;
+    width: 50px;
+}
+
+.todo.done {
+    text-decoration: line-through;
+}
+
+/* .todo.done::before {
+    content: '✅';
+    font-size: small;
+    margin-right: 2%;
+} */
+
+
+#todo-holder {
+    height: auto;
+}

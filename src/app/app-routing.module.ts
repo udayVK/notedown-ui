@@ -12,6 +12,7 @@ import { FindComponent } from './find/find.component';
 import { HomeComponent } from './home/home.component';
 import { LimitComponent } from './limit/limit.component';
 import { MiscComponent } from './misc/misc.component';
+import { TodoComponent } from './todo/todo.component';
 
 const routes: Routes = [
   {path:"add", component : AddComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path:"edit/loan/:id" ,component: EditLoanComponent},
   {path:"add/goal", component : AddGoalComponent },
   {path:"find/goal", component : FindGoalComponent},
+  {path:"to-do", component : TodoComponent},
 
   {path: "**",component : HomeComponent },
 ];
