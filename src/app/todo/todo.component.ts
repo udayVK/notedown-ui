@@ -21,7 +21,7 @@ export class TodoComponent implements OnInit {
   }
   
   addToDo() {
-    console.log(this.todoToAdd);
+    // console.log(this.todoToAdd);
     this.service.addToDo(this.todoToAdd).subscribe(
       //on success
       (todo)=>{
@@ -36,7 +36,7 @@ export class TodoComponent implements OnInit {
     
   fetchTodyTodos() {
     this.service.findTodayTodos().subscribe((todos)=>{
-      console.log(todos)
+      // console.log(todos)
       this.todoList=todos;
       this.classifyToDos();
     })
@@ -47,10 +47,10 @@ export class TodoComponent implements OnInit {
     this.completedToDoList = [];
     this.todoList.forEach((todo)=>{
       todo.status ? this.completedToDoList.push(todo) : this.pendingToDoList.push(todo);
-      console.log('completed');
-      console.log(this.completedToDoList);
-      console.log('pending');
-      console.log(this.pendingToDoList);
+      // console.log('completed');
+      // console.log(this.completedToDoList);
+      // console.log('pending');
+      // console.log(this.pendingToDoList);
     })
   }
 
@@ -62,8 +62,7 @@ export class TodoComponent implements OnInit {
   }
 
   saveTodoOnEnter(event: KeyboardEvent) {
-    // console.log('working')
-    console.log(event)
+    // console.log(event)
     if(event.code == 'Enter') {
       this.addToDo()
     }
