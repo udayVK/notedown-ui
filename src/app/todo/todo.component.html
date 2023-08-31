@@ -1,6 +1,6 @@
 <div>
     <div class="flex flex-space-between">
-        <input class="input m-input" placeholder="What to do ..?" [(ngModel)]="todoToAdd.description" (change)="addToDo()">
+        <input class="input m-input" placeholder="What to do ..?" [(ngModel)]="todoToAdd.description" (keyup)="saveTodoOnEnter($event)">
         <button class="dark" (click)="addToDo()">Let's Do</button>
     </div>
     <div *ngFor="let todo of pendingToDoList">

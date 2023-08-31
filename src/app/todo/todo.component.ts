@@ -60,6 +60,15 @@ export class TodoComponent implements OnInit {
     this.service.markTodoAsComplete(todoId).subscribe(()=>{console.log(document.querySelector('input.input[type=checkbox]'))});
 
   }
+
+  saveTodoOnEnter(event: KeyboardEvent) {
+    // console.log('working')
+    console.log(event)
+    if(event.code == 'Enter') {
+      this.addToDo()
+    }
+
+  }
 }
 
 
