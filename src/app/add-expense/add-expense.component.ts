@@ -10,6 +10,9 @@ import { SpendsService } from '../spends.service';
 })
 export class AddExpenseComponent implements OnInit {
 
+  isLoading:boolean = false;
+  isError:boolean = false;
+
   //using es6 spread operator to copy the values instead of reference
   spendAdd:Spend = {...defaultSpend,category:{...defaultCategory}};
   monthlyLimit:number=0;
@@ -28,12 +31,20 @@ export class AddExpenseComponent implements OnInit {
       console.log('add form validation failed');
       return
     }
+    this.isLoading = true;
+    this.isError = false;
     this.spnSrv.postSpend(this.spendAdd).subscribe({
                                           next:()=>{
+                                            this.isLoading=false;
+                                            this.isError=false;
                                             window.alert("Added");
                                             this.resetSpendForm();
                                           },
-                                          error:()=>{window.alert("error");},
+                                          error:()=>{
+                                            this.isError = true;
+                                            this.isLoading = false;
+                                            window.alert("error");
+                                          },
                                           complete:()=>{this.getSpentData();this.getAllExistingCategories()}});
   }
 

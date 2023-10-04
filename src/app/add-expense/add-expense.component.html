@@ -31,6 +31,9 @@
     </div>
   </div>
   <!--  -->
+    <div *ngIf = "isLoading && !isError" class = "flex flex-row-center">
+      <loading></loading>
+    </div>
     <div class="flex flex-space-around">
       <button #addReset type="reset" class="light">Reset</button>
       <button #addSubmit type="button" class="dark" (click)="addSpend()" >Submit</button>
