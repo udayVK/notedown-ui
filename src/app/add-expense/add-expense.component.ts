@@ -12,12 +12,14 @@ export class AddExpenseComponent implements OnInit {
 
   isLoading:boolean = false;
   isError:boolean = false;
+  showSaveCategory:boolean = false;
 
   //using es6 spread operator to copy the values instead of reference
   spendAdd:Spend = {...defaultSpend,category:{...defaultCategory}};
   monthlyLimit:number=0;
   monthlySpent:number=0;
   categories:Array<Category> = [defaultCategory];
+  categoryHeadings:Array<string> =[''];
 
   @ViewChild('addexpform')
   expForm!:ElementRef;
@@ -56,7 +58,12 @@ export class AddExpenseComponent implements OnInit {
     return true;
   }
   getAllExistingCategories(){
-    this.spnSrv.getAllExistingCategories().subscribe({next:(data)=>{this.categories = data},});
+    this.spnSrv.getAllExistingCategories().subscribe({
+      next:(data)=>{
+        this.categories = data;
+        this.categoryHeadings = this.categories.map(cat => cat.heading);
+      },
+    });
   }
 
   getSpentData(){
@@ -83,5 +90,9 @@ export class AddExpenseComponent implements OnInit {
     form.reset();
   }
 
+  checkToShowSaveCategory() {
+    this.showSaveCategory = false;
+    this.showSaveCategory = !this.categoryHeadings.includes(this.spendAdd.category.heading)
+  }
 
 }

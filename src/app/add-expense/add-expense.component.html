@@ -3,10 +3,20 @@
     
     <div class="flex flex-space-between">
       <span>Category</span>
-      <input class="input m-input" type="text" list="categories" name="Heading" placeholder="Main category of spends" [(ngModel)]="spendAdd.category.heading">
+      <input 
+        class="input m-input" 
+        type="text" list="categories" 
+        name="Heading" 
+        placeholder="Main category of spends" 
+        [(ngModel)]="spendAdd.category.heading"
+        (input)="checkToShowSaveCategory()">
       <datalist id="categories">
         <option *ngFor="let category of categories">{{category.heading}}</option>
       </datalist>
+    </div>
+    <div *ngIf="showSaveCategory">
+      <span>Save Category..?</span>
+      <input type="checkbox">
     </div>
 <!--  -->
     <div>
