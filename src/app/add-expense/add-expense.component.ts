@@ -20,6 +20,7 @@ export class AddExpenseComponent implements OnInit {
   monthlySpent:number=0;
   categories:Array<Category> = [defaultCategory];
   categoryHeadings:Array<string> =[''];
+  saveCategory:boolean = false;
 
   @ViewChild('addexpform')
   expForm!:ElementRef;
@@ -35,7 +36,7 @@ export class AddExpenseComponent implements OnInit {
     }
     this.isLoading = true;
     this.isError = false;
-    this.spnSrv.postSpend(this.spendAdd).subscribe({
+    this.spnSrv.postSpend(this.spendAdd, this.saveCategory).subscribe({
                                           next:()=>{
                                             this.isLoading=false;
                                             this.isError=false;
@@ -57,6 +58,7 @@ export class AddExpenseComponent implements OnInit {
     }
     return true;
   }
+
   getAllExistingCategories(){
     this.spnSrv.getAllExistingCategories().subscribe({
       next:(data)=>{
