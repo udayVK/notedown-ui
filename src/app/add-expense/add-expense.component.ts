@@ -42,6 +42,7 @@ export class AddExpenseComponent implements OnInit {
                                             this.isError=false;
                                             window.alert("Added");
                                             this.resetSpendForm();
+                                            this.showSaveCategory = false;
                                           },
                                           error:()=>{
                                             this.isError = true;
