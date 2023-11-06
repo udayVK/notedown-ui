@@ -1,0 +1,26 @@
+.todo {
+    margin: 5px;
+    font-size: 130%;
+}
+
+input[type=checkbox] {
+    font-size: larger;
+    margin: 4px 4px 4px 4px;
+    background-color: #fff;
+    border: 0.15em solid currentColor;
+    border-radius: 0.15em;
+}
+
+input[disabled] {
+    color: red;
+    background-color: blue;
+    border: 5px black solid;
+}
+
+.todo.done {
+    text-decoration: line-through;
+}
+
+#todo-holder {
+    height: auto;
+}

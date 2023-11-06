@@ -10,11 +10,17 @@ import { SpendsService } from '../spends.service';
 })
 export class AddExpenseComponent implements OnInit {
 
+  isLoading:boolean = false;
+  isError:boolean = false;
+  showSaveCategory:boolean = false;
+
   //using es6 spread operator to copy the values instead of reference
   spendAdd:Spend = {...defaultSpend,category:{...defaultCategory}};
   monthlyLimit:number=0;
   monthlySpent:number=0;
   categories:Array<Category> = [defaultCategory];
+  categoryHeadings:Array<string> =[''];
+  saveCategory:boolean = false;
 
   @ViewChild('addexpform')
   expForm!:ElementRef;
@@ -28,12 +34,21 @@ export class AddExpenseComponent implements OnInit {
       console.log('add form validation failed');
       return
     }
-    this.spnSrv.postSpend(this.spendAdd).subscribe({
+    this.isLoading = true;
+    this.isError = false;
+    this.spnSrv.postSpend(this.spendAdd, this.saveCategory).subscribe({
                                           next:()=>{
+                                            this.isLoading=false;
+                                            this.isError=false;
                                             window.alert("Added");
                                             this.resetSpendForm();
+                                            this.showSaveCategory = false;
                                           },
-                                          error:()=>{window.alert("error");},
+                                          error:()=>{
+                                            this.isError = true;
+                                            this.isLoading = false;
+                                            window.alert("error");
+                                          },
                                           complete:()=>{this.getSpentData();this.getAllExistingCategories()}});
   }
 
@@ -44,8 +59,14 @@ export class AddExpenseComponent implements OnInit {
     }
     return true;
   }
+
   getAllExistingCategories(){
-    this.spnSrv.getAllExistingCategories().subscribe({next:(data)=>{this.categories = data},});
+    this.spnSrv.getAllExistingCategories().subscribe({
+      next:(data)=>{
+        this.categories = data;
+        this.categoryHeadings = this.categories.map(cat => cat.heading);
+      },
+    });
   }
 
   getSpentData(){
@@ -72,5 +93,9 @@ export class AddExpenseComponent implements OnInit {
     form.reset();
   }
 
+  checkToShowSaveCategory() {
+    this.showSaveCategory = false;
+    this.showSaveCategory = !this.categoryHeadings.includes(this.spendAdd.category.heading)
+  }
 
 }

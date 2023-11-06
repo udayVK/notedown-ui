@@ -7,6 +7,7 @@ import { Goal } from './pojo/goal';
 import { Loan, LoanHistory } from './pojo/loan';
 import { Category } from './pojo/category';
 import { Spend } from "./pojo/spend";
+import { ToDo } from './pojo/todo';
 
 @Injectable({
   providedIn: 'root'
@@ -23,14 +24,14 @@ export class SpendsService {
   getMonthlyLimit():Observable<number> {
     return this.http.get<number>(this.baseURL+`data/monthlylimit/`);
   }
- 
-
+  
+  
   //spend
   getSpendsOfMonth(month:number, year:number):Observable<Spend[]>{
     return this.http.get<Spend[]>(this.baseURL+`spend/${year}/${month}`);
   }
-  postSpend(sp:Spend):Observable<Spend>{
-    return this.http.post<Spend>(this.baseURL+`spend/add`,sp);
+  postSpend(sp:Spend, saveCategory:boolean):Observable<Spend>{
+    return this.http.post<Spend>(this.baseURL+`spend/add?saveCategory=${saveCategory}`,sp);
   }
   getMonthlySpent(year:number, month:number):Observable<number> {
     return this.http.get<number>(this.baseURL+`spend/monthlyspent/${year}/${month}`);
@@ -61,7 +62,7 @@ export class SpendsService {
     console.log(loanId);
     return this.http.post<Loan>(this.baseURL+'loan/pay/add?loanid='+loanId, loanHistory);
   }
-
+  
   //goal
   addNewGoal(g:Goal){
     return this.http.post<Goal>(this.baseURL+'goal/new',g);
@@ -74,4 +75,20 @@ export class SpendsService {
     return this.http.put<number>(this.baseURL+'goal/change',id);
   }
   
+  
+  //todo
+  addToDo(todo:ToDo) :Observable<ToDo> {
+    console.log(todo);
+    return this.http.post<ToDo>(this.baseURL + 'todo/add', todo);
+  }
+  
+  findTodayTodos() :Observable<ToDo[]> {
+    let todos: Observable<ToDo[]> = this.http.get<ToDo[]>(this.baseURL + 'todo/today');
+    return todos;
+  }
+
+  markTodoAsComplete(todoId: number): Observable<boolean>{
+    return this.http.get<boolean>(this.baseURL + `todo/done/${todoId}`);
+  }
+
 }
