@@ -30,7 +30,7 @@ export class SpendsService {
   getSpendsOfMonth(month:number, year:number):Observable<Spend[]>{
     return this.http.get<Spend[]>(this.baseURL+`spend/${year}/${month}`);
   }
-  postSpend(sp:Spend, saveCategory:boolean):Observable<Spend>{
+  postSpend(sp:Spend, saveCategory:boolean = false):Observable<Spend>{
     return this.http.post<Spend>(this.baseURL+`spend/add?saveCategory=${saveCategory}`,sp);
   }
   getMonthlySpent(year:number, month:number):Observable<number> {
