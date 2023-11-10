@@ -3,6 +3,18 @@
 }
 .grid-container {
     display: grid;
-    grid-template-columns: 55% 20% 25%;
+    grid-template-columns: 50% 25% 25%;
     gap: 5px;
+}
+.repeat-spend{
+    display: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+.grid-container:hover .repeat-spend{
+    display: block;
+}
+.grid-container:hover {
+    grid-template-columns: 5% 52% 20% 23%;
 }
