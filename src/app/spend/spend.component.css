@@ -1,20 +1,9 @@
-.indent{
-    margin-left: 10px;
-}
 .grid-container {
     display: grid;
-    grid-template-columns: 50% 25% 25%;
+    grid-template-columns: 5% 52% 20% 23%;
     gap: 5px;
 }
-.repeat-spend{
-    display: none;
+.repeat-spend-btn {
     padding: 0px;
     margin: 0px;
-}
-
-.grid-container:hover .repeat-spend{
-    display: block;
-}
-.grid-container:hover {
-    grid-template-columns: 5% 52% 20% 23%;
 }
