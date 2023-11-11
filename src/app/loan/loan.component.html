@@ -20,10 +20,12 @@
                 <span class="pointer" (click)="emitEditLoanEvent(loan)">Pending: ₹ {{loan.pendingAmount}}</span>
             </div>
             <div class="collapsible">
-                <div *ngFor="let loanTransaction of loan.loanHistory" class="flex flex-space-between">
-                    <span>{{loanTransaction.date}}</span>
-                    <span>{{loanTransaction.type}}</span>
-                    <span>{{loanTransaction.amount}}</span>
+                <div *ngFor="let loanTransaction of loan.loanHistory" class="lh-grid-containe">
+                    <div class="lh-grid-container">
+                        <span class="grid-item-1">{{loanTransaction.date  | date:'shortDate'}}</span>
+                        <span class="grid-item-2">{{loanTransaction.type}}</span>
+                        <span class="grid-item-3">₹{{loanTransaction.amount | number}}</span>
+                    </div>
                 </div>
             </div>
         </div>
