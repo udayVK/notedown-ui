@@ -5,30 +5,16 @@ import { SpendsService } from '../spends.service';
 
 @Component({
   selector: 'edit-loan',
-  template: `
-  <form class="comp">
-    <table>
-      <tr><h4> {{loan.name}}       {{loan.date}} </h4></tr>
-      <tr> <td>Reason.?</td> </tr>
-      <tr> <td><input class="input long-input" type="text" name="why" placeholder="Reason" [(ngModel)]="loan.reason"></td> </tr>
-      <tr> <td>Total Amount</td> </tr>
-      <tr> <input class="input long-input" type="number" name="tamount" placeholder="How much.?" [(ngModel)]="loan.totalAmount" disabled> </tr>
-      <tr> <td>Pending Amount</td> </tr>
-      <tr> <td><input class="input long-input" type="number" name="pamount" placeholder="How much.?" [(ngModel)]="loan.pendingAmount"></td> </tr>
-    </table>
-  </form>
-  <div class="flex flex-space-between">
-    <button type="button" class="light" (click)="emitEditLoanEndEvent()">Back</button>
-    <button  type="button" class=" dark" (click)="saveEditedLoan()">Submit</button>
-  </div>
-  `,
-  styles: ['']
+  templateUrl: './edit-loan.component.html',
+  styleUrls: ['./edit-loan.component.css']
 })
 export class EditLoanComponent implements OnInit {
   
   @Input()
   loan:Loan = {...defaultLoan};
   loanHistory = {...defaultLoanHistory};
+  payBackAmount:number = 0;
+  takenAmount:number = 0;
   @Output()
   editLoanEventEnd:EventEmitter<1>=new EventEmitter<1>();
 
@@ -36,22 +22,45 @@ export class EditLoanComponent implements OnInit {
 
   saveEditedLoan(){
     console.log("saving the edited loan");
-    if(this.loanHistory.amount < this.loan.pendingAmount){    //lent more loan
-      this.loanHistory.type = true;
-      this.loanHistory.amount = this.loan.pendingAmount - this.loanHistory.amount;
-      this.loan.totalAmount += this.loanHistory.amount;
-    } else {            //loan paid partially
-      this.loanHistory.type = false;
-      this.loanHistory.amount = this.loanHistory.amount - this.loan.pendingAmount;
-    }
+    // if(this.loanHistory.amount < this.loan.pendingAmount){    //lent more loan
+    //   this.loanHistory.type = true;
+    //   this.loanHistory.amount = this.loan.pendingAmount - this.loanHistory.amount;
+    //   this.loan.totalAmount += this.loanHistory.amount;
+    // } else {            //loan paid partially
+    //   this.loanHistory.type = false;
+    //   this.loanHistory.amount = this.loanHistory.amount - this.loan.pendingAmount;
+    // }
+
+    this.loan.pendingAmount = this.loan.pendingAmount - this.payBackAmount + this.takenAmount;
+    this.loan.totalAmount += this.takenAmount;
 
     this.spnSrv.addEditedLoan(this.loan).subscribe({next:()=>{window.alert("loan edited");
-                                                    this.router.navigate(["/find","/loan"])}});
-    this.spnSrv.addLoanHistory(this.loanHistory, this.loan.id).subscribe({next:()=>{},error:()=>{},})
+                                                    this.router.navigate(["/find/loan"])}});
+    if(this.payBackAmount > 0) {
+      this.loanHistory.type = false;
+      this.loanHistory.amount = this.payBackAmount;
+      this.spnSrv.addLoanHistory(this.loanHistory, this.loan.id).subscribe({next:()=>{},error:()=>{},})
+    }
+    if(this.takenAmount > 0) {
+      this.loanHistory.type = true;
+      this.loanHistory.amount = this.takenAmount;
+      this.spnSrv.addLoanHistory(this.loanHistory, this.loan.id).subscribe({next:()=>{},error:()=>{},})
+    }
   }
   
   emitEditLoanEndEvent(){
     this.editLoanEventEnd.emit(1);
+  }
+
+  payBackChanged() {
+    console.log('payBackChanged')
+    // this.loan.pendingAmount -= this.payBackAmount;
+  }
+
+  takenAmountChanged() {
+    console.log('taken')
+    // this.loan.pendingAmount += this.takenAmount;
+    // this.loan.totalAmount += this.takenAmount;
   }
 
   ngOnInit(): void {
