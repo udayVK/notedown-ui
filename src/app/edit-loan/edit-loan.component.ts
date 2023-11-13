@@ -22,14 +22,6 @@ export class EditLoanComponent implements OnInit {
 
   saveEditedLoan(){
     console.log("saving the edited loan");
-    // if(this.loanHistory.amount < this.loan.pendingAmount){    //lent more loan
-    //   this.loanHistory.type = true;
-    //   this.loanHistory.amount = this.loan.pendingAmount - this.loanHistory.amount;
-    //   this.loan.totalAmount += this.loanHistory.amount;
-    // } else {            //loan paid partially
-    //   this.loanHistory.type = false;
-    //   this.loanHistory.amount = this.loanHistory.amount - this.loan.pendingAmount;
-    // }
 
     this.loan.pendingAmount = this.loan.pendingAmount - this.payBackAmount + this.takenAmount;
     this.loan.totalAmount += this.takenAmount;
@@ -56,17 +48,6 @@ export class EditLoanComponent implements OnInit {
     this.editLoanEventEnd.emit(1);
   }
 
-  payBackChanged() {
-    console.log('payBackChanged')
-    // this.loan.pendingAmount -= this.payBackAmount;
-  }
-
-  takenAmountChanged() {
-    console.log('taken')
-    // this.loan.pendingAmount += this.takenAmount;
-    // this.loan.totalAmount += this.takenAmount;
-  }
-
   ngOnInit(): void {
     const currentPendingAmount = this.loan.pendingAmount;
     this.loanHistory.amount = currentPendingAmount;
@@ -74,3 +55,6 @@ export class EditLoanComponent implements OnInit {
   }
 
 }
+// <tr> <td><input class="input long-input" type="text" name="why" placeholder="Reason" [(ngModel)]="loan.reason" disabled></td> </tr>
+// <tr> <td><input class="input long-input" type="number" name="pamount" placeholder="How much.?" [(ngModel)]="loan.pendingAmount"></td> </tr>
+// <tr> <input class="input long-input" type="number" name="tamount" placeholder="How much.?" [(ngModel)]="loan.totalAmount" disabled> </tr>
