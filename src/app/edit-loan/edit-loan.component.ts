@@ -39,12 +39,16 @@ export class EditLoanComponent implements OnInit {
     if(this.payBackAmount > 0) {
       this.loanHistory.type = false;
       this.loanHistory.amount = this.payBackAmount;
-      this.spnSrv.addLoanHistory(this.loanHistory, this.loan.id).subscribe({next:()=>{},error:()=>{},})
+      this.spnSrv.addLoanHistory(this.loanHistory, this.loan.id).subscribe({
+        next:()=>{this.payBackAmount = 0;},
+        error:()=>{},})
     }
     if(this.takenAmount > 0) {
       this.loanHistory.type = true;
       this.loanHistory.amount = this.takenAmount;
-      this.spnSrv.addLoanHistory(this.loanHistory, this.loan.id).subscribe({next:()=>{},error:()=>{},})
+      this.spnSrv.addLoanHistory(this.loanHistory, this.loan.id).subscribe({
+        next:()=>{this.takenAmount = 0},
+        error:()=>{},})
     }
   }
   
