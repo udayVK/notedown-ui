@@ -22,7 +22,7 @@
                 <div *ngFor="let loanTransaction of loan.loanHistory" class="lh-grid-containe">
                     <div class="lh-grid-container">
                         <span class="grid-item-1">{{loanTransaction.date  | date:'shortDate'}}</span>
-                        <span class="grid-item-2">{{loanTransaction.type}}</span>
+                        <span class="grid-item-2">{{loanTransaction.type | loanHistoryStatus}}</span>
                         <span class="grid-item-3">₹{{loanTransaction.amount | number}}</span>
                     </div>
                 </div>

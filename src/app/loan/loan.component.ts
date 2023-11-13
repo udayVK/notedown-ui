@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Loan,defaultLoan } from '../pojo/loan';
 import { SpendsService } from '../spends.service';
+import { Pipe, PipeTransform } from '@angular/core';
 
 @Component({
   selector: 'app-loan',
@@ -37,4 +38,13 @@ export class LoanComponent implements OnInit {
   ngOnInit(): void {
   }
 
+}
+  
+@Pipe({
+  name: 'loanHistoryStatus'
+})
+export class LoanHistoryStatus implements PipeTransform {
+  transform(value: boolean): string {
+    return value ?  'Lent More' : 'Paid Back';;
+  }
 }

@@ -20,7 +20,7 @@ import { AddLoanComponent } from './add-loan/add-loan.component';
 import { AddExpenseComponent } from './add-expense/add-expense.component';
 import { FindSpendComponent } from './find-spend/find-spend.component';
 import { FindLoanComponent } from './find-loan/find-loan.component';
-import { LoanComponent } from './loan/loan.component';
+import { LoanComponent, LoanHistoryStatus } from './loan/loan.component';
 import { AddGoalComponent } from './add-goal/add-goal.component';
 import { FindGoalComponent } from './find-goal/find-goal.component';
 import { EditLoanComponent } from './edit-loan/edit-loan.component';
@@ -50,6 +50,7 @@ import { TodoComponent } from './todo/todo.component';
     EditLoanComponent,
     LoaderComponent,
     TodoComponent,
+    LoanHistoryStatus,
   ],
   imports: [
     BrowserModule,
