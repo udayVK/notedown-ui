@@ -17,3 +17,10 @@
 .grid-item-3 {
     text-align:  right;
 }
+
+.pay-back {
+    color: green;
+}
+.lent-more {
+    color: red;
+}
