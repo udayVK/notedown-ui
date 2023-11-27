@@ -5,10 +5,9 @@
     </div>
     <div *ngFor="let todo of pendingToDoList">
         <input type="checkbox" class="input" value="true" (click)="markTodoAsComplete(todo.id)" [checked]=0>
-        <span></span>
         <span class="yet todo ">{{todo.description}}</span>
     </div>
-    <div class="flex flex-vertical-center" *ngFor="let todo of completedToDoList" id="todo-holder">
+    <div *ngFor="let todo of completedToDoList" id="todo-holder">
             <input type="checkbox" class="input" value="true" checked disabled>
             <span class="done todo">{{todo.description}}</span>
     </div>

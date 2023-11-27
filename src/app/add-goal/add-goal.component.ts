@@ -22,6 +22,10 @@ export class AddGoalComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // Change goal limit date to 3 months from now
+    let currMonth = this.addGoal.upto.getMonth()
+    this.addGoal.upto.setMonth(currMonth+3)
+    console.log(this.addGoal)
   }
 
 }

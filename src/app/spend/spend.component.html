@@ -1,10 +1,11 @@
 <div>
     <div *ngFor="let category of spends.spendMap.keys()">
-        <div>{{category}}</div>
+        <div><h4><strong>{{category}}</strong></h4></div>
         <div>
-            <div *ngFor="let sp of spends.spendMap.get(category)" class="grid-container indent">
+            <div *ngFor="let sp of spends.spendMap.get(category)" class="grid-container">
+                <span class="repeat-spend-btn pointer" (click)="repeatSpend(sp.id,category)">➕</span>
                 <span class="grid-item">{{sp.purpose}}</span>
-                <span class="grid-item">{{sp.date}}</span>
+                <span class="grid-item">{{sp.date | date:'shortDate'}}</span>
                 <span class="grid-item">₹{{sp.money | number}}<span *ngIf="sp.forOthers!=0">::{{sp.forOthers | number}}</span></span>
                 <!-- <span *ngIf="sp.forOthers!=0"  class="row-item">Others - ₹ {{sp.forOthers}} </span> -->
             </div>

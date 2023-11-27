@@ -4,3 +4,23 @@
 .collapsible{
     display: none;
 }
+.lh-grid-container {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+}
+.grid-item-1 {
+    text-align: left;
+}
+.grid-item-2 {
+    text-align: center;
+}
+.grid-item-3 {
+    text-align:  right;
+}
+
+.pay-back {
+    color: green;
+}
+.lent-more {
+    color: red;
+}

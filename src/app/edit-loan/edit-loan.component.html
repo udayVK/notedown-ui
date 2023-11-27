@@ -1,0 +1,34 @@
+<form class="comp">
+    <div>
+      <div><h4> {{loan.name}}       {{loan.date}} </h4></div>
+      <div>
+        <h5>{{loan.reason}}</h5>  
+      </div>
+      <div class="grid-container-amount">
+        <span>Total Amount</span> 
+        <span class="amount">₹{{loan.totalAmount + takenAmount | number}}</span>
+      </div>
+      <div class="grid-container-amount">
+        <span>Pending Amount</span>
+        <span class="amount">₹{{loan.pendingAmount - payBackAmount + takenAmount | number}}</span>
+      </div>
+      <div class="grid-container">
+        <span>Date</span>
+        <span style="text-align:right"><input type="date" name="loanHistoryDate" [(ngModel)]="loanHistory.date" class="input long-input"></span>
+      </div>
+      <div class="grid-container">
+          <span>Pay Back</span>
+          <span style="text-align:right"><input type="number" name="payBackAmount" [(ngModel)]="payBackAmount" class="input long-input" min="0"></span>
+      </div>
+      <div class="grid-container">
+        <span>Taken</span>
+        <span style="text-align:right"><input type="number" name="takenAmount" [(ngModel)]="takenAmount" class="input long-input" min="0"></span>
+      </div>
+      <div>
+      </div>
+    </div>
+  </form>
+  <div class="flex flex-space-between">
+    <button type="button" class="light" (click)="emitEditLoanEndEvent()">Back</button>
+    <button  type="button" class=" dark" (click)="saveEditedLoan()">Submit</button>
+  </div>
