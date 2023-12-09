@@ -5,9 +5,10 @@
             <div *ngFor="let sp of spends.spendMap.get(category)" class="grid-container">
                 <span class="repeat-spend-btn pointer" (click)="repeatSpend(sp.id,category)">➕</span>
                 <span class="grid-item">{{sp.purpose}}</span>
-                <span class="grid-item">{{sp.date | date:'shortDate'}}</span>
+                <span *ngIf="displayType==1" class="grid-item">{{sp.date | date:'shortDate'}}</span>
+                <span *ngIf="displayType==2" class="grid-item">{{sp.category.heading}}</span>
                 <span class="grid-item">₹{{sp.money | number}}<span *ngIf="sp.forOthers!=0">::{{sp.forOthers | number}}</span></span>
-                <!-- <span *ngIf="sp.forOthers!=0"  class="row-item">Others - ₹ {{sp.forOthers}} </span> -->
+                <!-- <span *ngIf="true"  class="row-item">{{displayType}} </span> -->
             </div>
         </div>
     </div>

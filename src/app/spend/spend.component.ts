@@ -15,10 +15,14 @@ export class SpendComponent implements OnInit {
   // spend:Spend = {purpose:'test',money:20,date:new Date(),toWhom:2};
   @Input()
   spends:SpendRender = {spendMap:new Map};
+  @Input()
+  displayType:number = 1;
+  // random = 0;
   constructor(private spnSrv: SpendsService) { }
 
   ngOnInit(): void {
-    setTimeout(()=>{console.log(this.spends)},2000);
+    setTimeout(()=>{console.log(this.spends);console.log(this.displayType)},2000);
+    
   }
 
   repeatSpend(spendId:number, category:string){

@@ -11,8 +11,10 @@ import { SpendsService } from '../spends.service';
 export class FindSpendComponent implements OnInit {
 
   // spendToSend:Spend[]=[{purpose:'',money:0,date:new Date(),toWhom:0}];
-  total:number=0;
-  month:string='';
+  total: number=0;
+  month: string='';
+  spendCategerizer: number = 1;
+  spends:Spend[] = [defaultSpend]
   //spend object that is easy to render
   spendsToRender:SpendRender = {spendMap:new Map<string, Spend[]>}
   
@@ -29,13 +31,27 @@ export class FindSpendComponent implements OnInit {
 
   convertToRenderSpends(spends:Spend[]){
     let spendsMap:Map<string,Spend[]> = new Map();
-    spends.forEach(sp=>{
-      if(spendsMap.has(sp.category.heading)){
-        spendsMap.get(sp.category.heading)?.push(sp)
-      }
-      else{spendsMap.set(sp.category.heading,[sp])}
-    });
+    switch(Number(this.spendCategerizer)) {
+      case 2:
+        spends.forEach(sp=>{
+          if(spendsMap.has(sp.date.toLocaleString())){
+            spendsMap.get(sp.date.toLocaleString())?.push(sp)
+          }
+          else{spendsMap.set(sp.date.toLocaleString(),[sp])}
+        });
+        break;
+      case 1:
+      default:
+        spends.forEach(sp=>{
+          if(spendsMap.has(sp.category.heading)){
+            spendsMap.get(sp.category.heading)?.push(sp)
+          }
+          else{spendsMap.set(sp.category.heading,[sp])}
+        });
+        break;
+    }
     this.spendsToRender = {spendMap:spendsMap};
+    console.log(this.spendsToRender);
   }
 
   getMonthArrFromString(month:string){
@@ -94,7 +110,9 @@ export class FindSpendComponent implements OnInit {
     this.month = this.correctTheMonth(monthToNavigate);
     this.searchSpecefic();
   }
-
+  print() {
+    console.log(this.spendCategerizer)
+  }
 }
 
 export interface SpendRender {
