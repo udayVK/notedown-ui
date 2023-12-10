@@ -1,8 +1,8 @@
 <div>
     <div *ngFor="let category of spends.spendMap.keys()">
-        <div><h4><strong>{{category}}</strong></h4></div>
+        <div><h4><strong>{{category}} - ₹{{spends.spendMap.get(category)?.listTotal}}</strong></h4></div>
         <div>
-            <div *ngFor="let sp of spends.spendMap.get(category)" class="grid-container">
+            <div *ngFor="let sp of spends.spendMap.get(category)?.spendsList" class="grid-container">
                 <span class="repeat-spend-btn pointer" (click)="repeatSpend(sp.id,category)">➕</span>
                 <span class="grid-item">{{sp.purpose}}</span>
                 <span *ngIf="displayType==1" class="grid-item">{{sp.date | date:'shortDate'}}</span>

@@ -26,12 +26,12 @@ export class SpendComponent implements OnInit {
   }
 
   repeatSpend(spendId:number, category:string){
-    let spendToRepeat = this.spends.spendMap.get(category)?.filter(sp=>sp.id===spendId)[0];
+    let spendToRepeat = this.spends.spendMap.get(category)?.spendsList.filter(sp=>sp.id===spendId)[0];
     console.log(spendToRepeat);
     if(spendToRepeat){
       let spend = {...spendToRepeat}
       spend.date = new Date();
-      this.spends.spendMap.get(category)?.push(spend);
+      this.spends.spendMap.get(category)?.spendsList.push(spend);
       spend.id = NaN;
       this.spnSrv.postSpend(spend).subscribe((data)=>{console.log(data)},()=>{});
     }
