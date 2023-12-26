@@ -4,7 +4,7 @@
     <div class="flex flex-space-around">
       <div>
         <strong class="month-navigatiors pointer" (click)="navigateMonth('-')">⇦</strong>
-        <input class="input m-input" type="month" name="month"  [(ngModel)]="month" (change)="searchSpecefic()">
+        <input class="input m-input" type="month" name="month"  [(ngModel)]="month" (change)="convertToRenderSpends()">
         <strong class="month-navigatiors pointer" (click)="navigateMonth('+')">⇨</strong>
       </div>
     </div>
