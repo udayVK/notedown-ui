@@ -1,4 +1,4 @@
-<form class="comp">
+<div class="comp">
 
   <h3 routerLink="/add/exp" class="pointer">➕Spends</h3>
     <div class="flex flex-space-around">
@@ -8,10 +8,15 @@
         <strong class="month-navigatiors pointer" (click)="navigateMonth('+')">⇨</strong>
       </div>
     </div>
-
-    <app-spend  [spends]="spendsToRender" ></app-spend>
+    <div>
+      <select [(ngModel)]="spendCategerizer" (change)="searchSpecefic()" name="spendCateogriser">
+        <option [value]="1">Category</option>
+        <option [value]="2">Date</option>
+      </select>
+    </div>
+    <app-spend  [spends]="spendsToRender" [displayType]="spendCategerizer"></app-spend>
     <hr>
     <span>Total: ₹{{total | number}}</span>
   <hr>
     
-</form>
+</div>

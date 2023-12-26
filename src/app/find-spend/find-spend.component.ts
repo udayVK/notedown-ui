@@ -11,11 +11,13 @@ import { SpendsService } from '../spends.service';
 export class FindSpendComponent implements OnInit {
 
   // spendToSend:Spend[]=[{purpose:'',money:0,date:new Date(),toWhom:0}];
-  total:number=0;
-  month:string='';
+  total: number=0;
+  month: string='';
+  spendCategerizer: number = 1;
+  spends:Spend[] = [defaultSpend]
   //spend object that is easy to render
-  spendsToRender:SpendRender = {spendMap:new Map<string, Spend[]>}
-  
+  spendsToRender:SpendRender = {spendMap: new Map<string,{listTotal:number, spendsList:Spend[]}>};
+  // {spendMap:new Map<string, {, Spend[]}>;
   constructor(private spnSrv: SpendsService) { }
 
   searchSpecefic(){
@@ -28,14 +30,43 @@ export class FindSpendComponent implements OnInit {
   }
 
   convertToRenderSpends(spends:Spend[]){
-    let spendsMap:Map<string,Spend[]> = new Map();
-    spends.forEach(sp=>{
-      if(spendsMap.has(sp.category.heading)){
-        spendsMap.get(sp.category.heading)?.push(sp)
-      }
-      else{spendsMap.set(sp.category.heading,[sp])}
-    });
+    let spendsMap:Map<string,{listTotal:number, spendsList:Spend[]}> = new Map();
+    switch(Number(this.spendCategerizer)) {
+      case 2:
+        spends.forEach(sp=>{
+          let listAmountTotal = 0;
+          if(spendsMap.has(sp.date.toLocaleString())){
+            let spendMapArray = spendsMap.get(sp.date.toLocaleString())
+            if(spendMapArray){
+              spendMapArray?.spendsList.push(sp);
+              spendMapArray.listTotal = sp.money;
+              listAmountTotal = sp.money;
+            } 
+          }
+          else{
+            spendsMap.set(sp.date.toLocaleString(),{listTotal:listAmountTotal+sp.money,spendsList:[sp]})}
+        });
+        break;
+      case 1:
+      default:
+        spends.forEach(sp=>{
+          let listAmountTotal = 0;
+          if(spendsMap.has(sp.category.heading)){
+            let spendMapArray = spendsMap.get(sp.category.heading)
+            if(spendMapArray){
+              spendMapArray?.spendsList.push(sp);
+              spendMapArray.listTotal = sp.money;
+              listAmountTotal = sp.money;
+            } 
+          }
+          else{
+            spendsMap.set(sp.category.heading,{listTotal:listAmountTotal+sp.money,spendsList:[sp]})}
+        });
+        break;
+    }
     this.spendsToRender = {spendMap:spendsMap};
+    // {spendMap:{[...spendsMap.entries()].sort()}}
+    console.log(this.spendsToRender);
   }
 
   getMonthArrFromString(month:string){
@@ -94,9 +125,11 @@ export class FindSpendComponent implements OnInit {
     this.month = this.correctTheMonth(monthToNavigate);
     this.searchSpecefic();
   }
-
+  print() {
+    console.log(this.spendCategerizer)
+  }
 }
 
 export interface SpendRender {
-  spendMap: Map<string, Spend[]>;
+  spendMap: Map<string, {listTotal:number,spendsList:Spend[]}>;
 }

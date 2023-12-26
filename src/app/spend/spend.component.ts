@@ -15,19 +15,23 @@ export class SpendComponent implements OnInit {
   // spend:Spend = {purpose:'test',money:20,date:new Date(),toWhom:2};
   @Input()
   spends:SpendRender = {spendMap:new Map};
+  @Input()
+  displayType:number = 1;
+  // random = 0;
   constructor(private spnSrv: SpendsService) { }
 
   ngOnInit(): void {
-    setTimeout(()=>{console.log(this.spends)},2000);
+    setTimeout(()=>{console.log(this.spends);console.log(this.displayType)},2000);
+    
   }
 
   repeatSpend(spendId:number, category:string){
-    let spendToRepeat = this.spends.spendMap.get(category)?.filter(sp=>sp.id===spendId)[0];
+    let spendToRepeat = this.spends.spendMap.get(category)?.spendsList.filter(sp=>sp.id===spendId)[0];
     console.log(spendToRepeat);
     if(spendToRepeat){
       let spend = {...spendToRepeat}
       spend.date = new Date();
-      this.spends.spendMap.get(category)?.push(spend);
+      this.spends.spendMap.get(category)?.spendsList.push(spend);
       spend.id = NaN;
       this.spnSrv.postSpend(spend).subscribe((data)=>{console.log(data)},()=>{});
     }
