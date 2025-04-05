@@ -1,5 +1,5 @@
 <div class="comp">
-    <div>{{name}}</div>
+    <div class="badge flex flex-space-around">{{name}}</div>
     <div *ngFor="let loan of loans" class="expander">
         <div><!--add conditions to this tag based on the filter selection-->
             <div class="flex flex-space-between">
@@ -16,7 +16,9 @@
             </div>
             <div class="flex flex-space-between">
                 <span>Total: ₹ {{loan.totalAmount}}</span>
-                <span class="pointer" (click)="emitEditLoanEvent(loan)">Pending: ₹ {{loan.pendingAmount}}</span>
+                <div>
+                    <span class="pointer badge" (click)="emitEditLoanEvent(loan)">Pending:</span><span> ₹ {{loan.pendingAmount}}</span>
+                </div>
             </div>
             <div class="collapsible">
                 <div *ngFor="let loanTransaction of loan.loanHistory" class="lh-grid-containe">

@@ -1,5 +1,5 @@
 <form  class="comp" #addexpform>
-    <div>Your monthly limit is {{monthlyLimit}}. You already spent {{monthlySpent}}. Balance {{monthlyLimit-monthlySpent}}</div>
+    <div>Monthly limit: ₹{{monthlyLimit}} Spent: ₹{{monthlySpent}} Balance: ₹{{monthlyLimit-monthlySpent}}</div>
     
     <div class="flex flex-space-between">
       <span>Category</span>
@@ -37,7 +37,7 @@
     
     <div class="flex flex-space-between">
       <span>Date</span>
-      <input class="input m-input" type="date" name="date" placeholder="when.?" [(ngModel)]="spendAdd.date">
+      <input class="input m-input" type="date" name="date" [(ngModel)]="spendAdd.date">
     </div>
   </div>
   <!--  -->

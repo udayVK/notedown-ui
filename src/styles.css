@@ -14,7 +14,7 @@ app-root{
     justify-content: center;
 }
 div{
-    margin:1px;
+    margin:2px;
 }
 button{
     border-radius: 4px;
@@ -101,4 +101,10 @@ button.dark:active{
   }
 .pointer{
     cursor: pointer;
+}
+.badge {
+    padding: 2px;
+    border-radius: 5%;
+    background-color: #93aebb;
+    font-weight: 400;
 }
