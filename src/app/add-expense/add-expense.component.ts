@@ -1,5 +1,4 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import Swal from 'sweetalert2';
 import { Category, defaultCategory } from '../pojo/category';
 import {Spend, defaultSpend }from '../pojo/spend';
 import { SpendsService } from '../spends.service';

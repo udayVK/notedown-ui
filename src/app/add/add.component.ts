@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import  Swal  from 'sweetalert2';
 import { Category } from '../pojo/category';
 import { Spend } from "../pojo/spend";
 import { SpendsService } from '../spends.service';
