@@ -11,12 +11,7 @@ import { SpendsService } from './spends.service';
 export class AppComponent {
   title = 'Money Rules';
   
-
-  //spends list that comes after call of specefic search
-  // spends=[{id:0,purpose:'',money:0,date:Date.now(),toWhom:0}];
-  
-
-  constructor(private spnSrv: SpendsService, private router: Router ){
+  constructor(private router: Router ){
   }
 
   goToHome(){

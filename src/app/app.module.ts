@@ -24,8 +24,9 @@ import { LoanComponent, LoanHistoryStatus } from './loan/loan.component';
 import { AddGoalComponent } from './add-goal/add-goal.component';
 import { FindGoalComponent } from './find-goal/find-goal.component';
 import { EditLoanComponent } from './edit-loan/edit-loan.component';
-import { LoaderComponent } from './loader/loader.component';
+import { LoaderComponent } from './shared/loader/loader.component';
 import { TodoComponent } from './todo/todo.component';
+import { NotifComponent } from './shared/notif/notif.component';
 
 
 
@@ -51,6 +52,7 @@ import { TodoComponent } from './todo/todo.component';
     LoaderComponent,
     TodoComponent,
     LoanHistoryStatus,
+    NotifComponent,
   ],
   imports: [
     BrowserModule,

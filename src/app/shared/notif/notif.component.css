@@ -1,0 +1,15 @@
+div.notif {
+    font-weight: bold;
+}
+
+div.notif.success {
+    color: green;
+}
+
+div.notif.error {
+    color: red;
+}
+
+div.notif.warn {
+    color: darkgray;
+}

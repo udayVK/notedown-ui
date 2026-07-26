@@ -12,6 +12,7 @@ export class AddExpenseComponent implements OnInit {
   isLoading:boolean = false;
   isError:boolean = false;
   showSaveCategory:boolean = false;
+  notif = {message:'', typeStyle:''};
 
   //using es6 spread operator to copy the values instead of reference
   spendAdd:Spend = {...defaultSpend,category:{...defaultCategory}};
@@ -39,14 +40,16 @@ export class AddExpenseComponent implements OnInit {
                                           next:()=>{
                                             this.isLoading=false;
                                             this.isError=false;
-                                            window.alert("Added");
+                                            this.notif = {message:"Spend Saved", typeStyle:"success"};
+                                            window.setTimeout(()=>{this.notif = {message:"", typeStyle:""};},3000);
                                             this.resetSpendForm();
                                             this.showSaveCategory = false;
                                           },
                                           error:()=>{
                                             this.isError = true;
                                             this.isLoading = false;
-                                            window.alert("error");
+                                            this.notif = {message:"Something went wrong", typeStyle: "error"};
+                                            window.setTimeout(()=>{this.notif = {message:"", typeStyle:""};},3000);
                                           },
                                           complete:()=>{this.getSpentData();this.getAllExistingCategories()}});
   }
